@@ -5,3 +5,8 @@ dist/
 uploads/
 logs/
 *.log
+*.b64
+*.png
+get-docker.sh
+fix_categories*.sql
+Dockerfile.txt
