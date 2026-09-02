@@ -27,20 +27,21 @@ export const createApp = () => {
   }));
 
   // CORS with production restrictions
-  const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
   app.use(
     cors({
       origin: (origin, callback) => {
         // Allow requests with no origin (mobile apps, curl)
         if (!origin) return callback(null, true);
         
-        // In development, allow all
-        if (process.env.NODE_ENV !== 'production') {
-          return callback(null, true);
-        }
+        // Allow Render frontend
+        const allowedOrigins = [
+          'https://resto-dz-frontend.onrender.com',
+          'http://localhost:5173',
+          'http://localhost:5174',
+          'http://localhost:3000',
+        ];
         
-        // In production, only allow configured origins
-        if (allowedOrigins.includes(origin)) {
+        if (process.env.NODE_ENV !== 'production' || allowedOrigins.includes(origin)) {
           return callback(null, true);
         }
         
