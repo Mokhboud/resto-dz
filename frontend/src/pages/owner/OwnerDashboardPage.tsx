@@ -6,7 +6,7 @@ import { useAuthStore } from '../../stores/authStore';
 export default function OwnerDashboardPage() {
   const { user } = useAuthStore();
 
-  const { data: dashboardData, isLoading: dashboardLoading } = useQuery({
+  const { data: dashboardData } = useQuery({
     queryKey: ['owner-dashboard'],
     queryFn: async () => {
       const response = await apiClient.get('/owner/dashboard');
@@ -14,7 +14,7 @@ export default function OwnerDashboardPage() {
     },
   });
 
-  const { data: restaurantsData, isLoading: restaurantsLoading } = useQuery({
+const { data: restaurantsData } = useQuery({
     queryKey: ['owner-restaurants'],
     queryFn: async () => {
       const response = await apiClient.get('/owner/restaurants');

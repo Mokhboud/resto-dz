@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
 
 export default function RankingPage() {
-  const [wilayaId, setWilayaId] = useState('');
-  const [page, setPage] = useState(1);
+const [wilayaId, setWilayaId] = useState('');
+const [page] = useState(1);
 
   const { data: wilayasData } = useQuery({
     queryKey: ['wilayas'],
@@ -23,7 +23,6 @@ export default function RankingPage() {
   });
 
   const restaurants = data?.data || [];
-  const pagination = data?.pagination;
   const meta = data?.meta;
   const wilayas = wilayasData?.data || [];
 

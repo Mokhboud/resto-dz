@@ -23,7 +23,7 @@ export default function HomePage() {
     queryFn: () => restaurantsApi.getRankedRestaurants({ limit: 6 }),
   });
 
-  const { data: nearbyData, refetch: refetchNearby } = useQuery({
+  const { data: nearbyData } = useQuery({
     queryKey: ['nearby-home'],
     queryFn: () =>
       restaurantsApi.getNearbyRestaurants(userLocation!.lat, userLocation!.lng, 10),
