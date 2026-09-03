@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
 import { useTranslation } from 'react-i18next';
 
 export default function RestaurantsPage() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [wilayaId, setWilayaId] = useState(searchParams.get('wilaya_id') || '');
@@ -71,19 +72,42 @@ export default function RestaurantsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Search</label>
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search..."
-                className="w-full px-3 py-2 border rounded-md"
-              />
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      navigate(`/restaurants?search=${encodeURIComponent(search)}`);
+                    }
+                  }}
+                  placeholder="Search..."
+                  className="flex-1 px-3 py-2 border rounded-md"
+                />
+                <button
+                  onClick={() => navigate(`/restaurants?search=${encodeURIComponent(search)}`)}
+                  className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 whitespace-nowrap"
+                >
+                  Search
+                </button>
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Wilaya</label>
               <select
                 value={wilayaId}
-                onChange={(e) => setWilayaId(e.target.value)}
+                onChange={(e) => {
+                  const newWilayaId = e.target.value;
+                  setWilayaId(newWilayaId);
+                  setPage(1);
+                  if (newWilayaId) {
+                    navigate(`/restaurants?wilaya_id=${newWilayaId}`);
+                  } else {
+                    navigate('/restaurants');
+                  }
+                }}
                 className="w-full px-3 py-2 border rounded-md"
               >
                 <option value="">All Wilayas</option>
@@ -99,7 +123,9 @@ export default function RestaurantsPage() {
               <select
                 onChange={(e) => {
                   if (e.target.value) {
-                    window.location.href = `/restaurants?category_id=${e.target.value}`;
+                    navigate(`/restaurants?category_id=${e.target.value}`);
+                  } else {
+                    navigate('/restaurants');
                   }
                 }}
                 className="w-full px-3 py-2 border rounded-md"
