@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
 import { useTranslation } from 'react-i18next';
 
 export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const { t } = useTranslation();
-  const [search, setSearch] = useState(searchParams.get('search') || '');
-  const [wilayaId, setWilayaId] = useState(searchParams.get('wilaya_id') || '');
-  const [categoryId, setCategoryId] = useState(searchParams.get('category_id') || '');
-  const [page, setPage] = useState(1);
+
+  // All filter state comes from URL
+  const search = searchParams.get('search') || '';
+  const wilayaId = searchParams.get('wilaya_id') || '';
+  const categoryId = searchParams.get('category_id') || '';
+  const page = Number(searchParams.get('page') || '1');
+
+  // Separate state for search input (only for the input field)
+  const [searchInput, setSearchInput] = useState(search);
 
   // Nearby mode
   const nearbyMode = searchParams.get('nearby') === 'true';
@@ -36,7 +40,7 @@ export default function RestaurantsPage() {
   });
 
   // Query for regular restaurants list
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['restaurants-list', search, wilayaId, categoryId, page],
     queryFn: () =>
       restaurantsApi.getRestaurants({
@@ -49,7 +53,7 @@ export default function RestaurantsPage() {
     enabled: !nearbyMode,
   });
 
-  const restaurants = nearbyMode 
+  const restaurants = nearbyMode
     ? (nearbyData?.data || [])
     : (data?.data || []);
   const pagination = data?.pagination;
@@ -57,20 +61,40 @@ export default function RestaurantsPage() {
   const categories = categoriesData?.data || [];
   const loading = nearbyMode ? nearbyLoading : isLoading;
 
-  // Update URL with combined filters
-  const updateFilters = (newSearch?: string, newWilayaId?: string, newCategoryId?: string) => {
+  // Single source of truth: URL params
+  const updateFilters = (
+    newSearch?: string,
+    newWilayaId?: string,
+    newCategoryId?: string
+  ) => {
     const params = new URLSearchParams();
-    
+
     const finalSearch = newSearch !== undefined ? newSearch : search;
     const finalWilayaId = newWilayaId !== undefined ? newWilayaId : wilayaId;
     const finalCategoryId = newCategoryId !== undefined ? newCategoryId : categoryId;
-    
-    if (finalSearch) params.set('search', finalSearch);
-    if (finalWilayaId) params.set('wilaya_id', finalWilayaId);
-    if (finalCategoryId) params.set('category_id', finalCategoryId);
-    
-    const queryString = params.toString();
-    navigate(queryString ? `/restaurants?${queryString}` : '/restaurants');
+
+    if (finalSearch.trim()) {
+      params.set('search', finalSearch.trim());
+    }
+
+    if (finalWilayaId) {
+      params.set('wilaya_id', finalWilayaId);
+    }
+
+    if (finalCategoryId) {
+      params.set('category_id', finalCategoryId);
+    }
+
+    // Reset to page 1 on filter change
+    params.set('page', '1');
+
+    setSearchParams(params);
+  };
+
+  const changePage = (newPage: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', String(newPage));
+    setSearchParams(params);
   };
 
   return (
@@ -84,104 +108,116 @@ export default function RestaurantsPage() {
         </p>
       )}
 
-      {/* Filters (only show in regular mode) */}
+      {/* Filters */}
       {!nearbyMode && (
         <div className="bg-white border rounded-lg p-4 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Search */}
             <div>
               <label className="block text-sm font-medium mb-1">Search</label>
               <div className="flex gap-2">
                 <input
                   type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault();
-                      updateFilters(search, undefined, undefined);
+                      updateFilters(searchInput, undefined, undefined);
                     }
                   }}
                   placeholder="Search..."
                   className="flex-1 px-3 py-2 border rounded-md"
                 />
                 <button
-                  onClick={() => updateFilters(search, undefined, undefined)}
+                  onClick={() => updateFilters(searchInput, undefined, undefined)}
                   className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 whitespace-nowrap"
                 >
                   Search
                 </button>
               </div>
             </div>
+
+            {/* Wilaya */}
             <div>
               <label className="block text-sm font-medium mb-1">Wilaya</label>
               <select
                 value={wilayaId}
-                onChange={(e) => {
-                  const newVal = e.target.value;
-                  setWilayaId(newVal);
-                  setPage(1);
-                  updateFilters(undefined, newVal, undefined);
-                }}
+                onChange={(e) => updateFilters(undefined, e.target.value, undefined)}
                 className="w-full px-3 py-2 border rounded-md"
               >
                 <option value="">All Wilayas</option>
                 {wilayas.map((w: any) => (
-                  <option key={w.id} value={w.id}>
+                  <option key={w.id} value={String(w.id)}>
                     {w.name_en}
                   </option>
                 ))}
               </select>
             </div>
+
+            {/* Category */}
             <div>
               <label className="block text-sm font-medium mb-1">Category</label>
               <select
                 value={categoryId}
-                onChange={(e) => {
-                  const newVal = e.target.value;
-                  setCategoryId(newVal);
-                  setPage(1);
-                  updateFilters(undefined, undefined, newVal);
-                }}
+                onChange={(e) => updateFilters(undefined, undefined, e.target.value)}
                 className="w-full px-3 py-2 border rounded-md"
               >
                 <option value="">All Categories</option>
                 {categories.map((c: any) => (
-                  <option key={c.id} value={c.id}>
+                  <option key={c.id} value={String(c.id)}>
                     {c.icon} {c.name_en}
                   </option>
                 ))}
               </select>
             </div>
           </div>
-          {/* Show active filters */}
+
+          {/* Active filters */}
           {(search || wilayaId || categoryId) && (
-            <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t">
+            <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t">
               {search && (
-                <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs">
+                <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
                   🔍 {search}
-                  <button onClick={() => { setSearch(''); updateFilters('', undefined, undefined); }} className="ml-2 font-bold">×</button>
+                  <button
+                    onClick={() => {
+                      setSearchInput('');
+                      updateFilters('', undefined, undefined);
+                    }}
+                    className="font-bold hover:text-red-500"
+                  >
+                    ×
+                  </button>
                 </span>
               )}
               {wilayaId && (
-                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">
-                  📍 {wilayas.find((w: any) => w.id === parseInt(wilayaId))?.name_en}
-                  <button onClick={() => { setWilayaId(''); updateFilters(undefined, '', undefined); }} className="ml-2 font-bold">×</button>
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
+                  📍 {wilayas.find((w: any) => String(w.id) === String(wilayaId))?.name_en}
+                  <button
+                    onClick={() => updateFilters(undefined, '', undefined)}
+                    className="font-bold hover:text-red-500"
+                  >
+                    ×
+                  </button>
                 </span>
               )}
               {categoryId && (
-                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
-                  🏷️ {categories.find((c: any) => c.id === categoryId)?.name_en}
-                  <button onClick={() => { setCategoryId(''); updateFilters(undefined, undefined, ''); }} className="ml-2 font-bold">×</button>
+                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
+                  🏷️ {categories.find((c: any) => String(c.id) === String(categoryId))?.name_en}
+                  <button
+                    onClick={() => updateFilters(undefined, undefined, '')}
+                    className="font-bold hover:text-red-500"
+                  >
+                    ×
+                  </button>
                 </span>
               )}
               <button
                 onClick={() => {
-                  setSearch('');
-                  setWilayaId('');
-                  setCategoryId('');
-                  navigate('/restaurants');
+                  setSearchInput('');
+                  setSearchParams({});
                 }}
-                className="text-xs text-gray-500 hover:text-red-500"
+                className="text-xs text-gray-500 hover:text-red-500 ml-2"
               >
                 Clear all
               </button>
@@ -241,11 +277,11 @@ export default function RestaurantsPage() {
         ))}
       </div>
 
-      {/* Pagination (regular mode only) */}
+      {/* Pagination */}
       {!nearbyMode && pagination && pagination.totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-8">
           <button
-            onClick={() => setPage(page - 1)}
+            onClick={() => changePage(page - 1)}
             disabled={page <= 1}
             className="px-4 py-2 border rounded-md disabled:opacity-50"
           >
@@ -255,7 +291,7 @@ export default function RestaurantsPage() {
             Page {page} of {pagination.totalPages}
           </span>
           <button
-            onClick={() => setPage(page + 1)}
+            onClick={() => changePage(page + 1)}
             disabled={page >= pagination.totalPages}
             className="px-4 py-2 border rounded-md disabled:opacity-50"
           >
