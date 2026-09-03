@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { restaurantsApi } from '../../api/restaurants';
+import { useTranslation } from 'react-i18next';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const { t } = useTranslation();
 
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
@@ -61,10 +63,10 @@ export default function HomePage() {
       <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            🇩🇿 Discover the Best Restaurants in Algeria
+            🇩🇿 {t('home.heroTitle')}
           </h1>
           <p className="text-lg mb-8 text-orange-100">
-            Discover. Taste. Rate. Trust.
+            {t('app.tagline')}
           </p>
 
           <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
@@ -73,14 +75,14 @@ export default function HomePage() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search restaurants, food, city..."
+                placeholder={t('home.searchPlaceholder')}
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-300"
               />
               <button
                 type="submit"
                 className="px-6 py-3 bg-white text-orange-600 rounded-lg font-semibold hover:bg-orange-50"
               >
-                Search
+                {t('home.searchButton')}
               </button>
             </div>
           </form>
@@ -89,14 +91,14 @@ export default function HomePage() {
             onClick={handleLocationSearch}
             className="mt-4 px-6 py-2 bg-white/20 border border-white/40 rounded-lg hover:bg-white/30"
           >
-            📍 Restaurants near me
+            {t('home.nearby')}
           </button>
         </div>
       </div>
 
       {/* Categories */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
+        <h2 className="text-2xl font-bold mb-6">{t('home.categories')}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {categories.slice(0, 12).map((cat: any) => (
             <Link
@@ -105,7 +107,9 @@ export default function HomePage() {
               className="bg-white border rounded-lg p-4 text-center hover:shadow-md transition"
             >
               <div className="text-3xl mb-2">{cat.icon}</div>
-              <div className="font-semibold text-sm">{cat.name_en}</div>
+              <div className="font-semibold text-sm">
+                {localStorage.getItem('language') === 'ar' ? cat.name_ar : localStorage.getItem('language') === 'fr' ? cat.name_fr : cat.name_en}
+              </div>
               <div className="text-xs text-gray-500">{cat.name_fr}</div>
             </Link>
           ))}
@@ -116,9 +120,9 @@ export default function HomePage() {
       <div className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">🏆 Top Ranked Restaurants</h2>
+            <h2 className="text-2xl font-bold">{t('home.topRanked')}</h2>
             <Link to="/ranking" className="text-orange-600 hover:underline">
-              View all
+              {t('home.viewAll')}
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -132,7 +136,7 @@ export default function HomePage() {
                   <div className="flex items-start justify-between">
                     <h3 className="font-bold text-lg">{restaurant.name}</h3>
                     {restaurant.verified && (
-                      <span className="text-blue-500 text-sm">✓ Verified</span>
+                      <span className="text-blue-500 text-sm">✓</span>
                     )}
                   </div>
                   <p className="text-sm text-gray-500 mt-1">{restaurant.wilaya_name}</p>
@@ -141,10 +145,7 @@ export default function HomePage() {
                       ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
                     </span>
                     <span className="text-sm text-gray-500">
-                      ({restaurant.review_count} reviews)
-                    </span>
-                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">
-                      Score: {restaurant.ranking_score}
+                      ({restaurant.review_count} {t('restaurant.reviews').replace('💬 ', '')})
                     </span>
                   </div>
                 </div>
@@ -168,11 +169,11 @@ export default function HomePage() {
                 <h3 className="font-bold">{restaurant.name}</h3>
                 <p className="text-sm text-gray-500">{restaurant.wilaya_name}</p>
                 <p className="text-sm text-gray-600 mt-2">
-                  📏 {parseFloat(restaurant.distance_km || '0').toFixed(1)} km away
+                  📏 {parseFloat(restaurant.distance_km || '0').toFixed(1)} km
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   <span className="text-yellow-500">⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}</span>
-                  <span className="text-sm text-gray-500">({restaurant.review_count} reviews)</span>
+                  <span className="text-sm text-gray-500">({restaurant.review_count})</span>
                 </div>
               </Link>
             ))}
@@ -183,7 +184,7 @@ export default function HomePage() {
       {/* Wilayas */}
       <div className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-6">🇩🇿 Restaurants by Wilaya</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('home.byWilaya')}</h2>
           <div className="flex flex-wrap gap-2">
             {wilayas.slice(0, 20).map((wilaya: any) => (
               <Link
@@ -191,7 +192,7 @@ export default function HomePage() {
                 to={`/restaurants?wilaya_id=${wilaya.id}`}
                 className="px-4 py-2 bg-gray-100 rounded-full text-sm hover:bg-orange-100 hover:text-orange-700 transition"
               >
-                {wilaya.name_en}
+                {localStorage.getItem('language') === 'ar' ? wilaya.name_ar : localStorage.getItem('language') === 'fr' ? wilaya.name_fr : wilaya.name_en}
               </Link>
             ))}
           </div>
