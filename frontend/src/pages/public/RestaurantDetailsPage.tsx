@@ -5,6 +5,7 @@ import { restaurantsApi } from '../../api/restaurants';
 import { useAuthStore } from '../../stores/authStore';
 import PhotoGallery from '../../components/restaurants/PhotoGallery';
 import PhotoUpload from '../../components/restaurants/PhotoUpload';
+import { apiClient } from '../../api/client';
 
 export default function RestaurantDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -13,6 +14,28 @@ export default function RestaurantDetailsPage() {
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState('');
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [showClaimForm, setShowClaimForm] = useState(false);
+  const [claimPhone, setClaimPhone] = useState('');
+  const [claimNotes, setClaimNotes] = useState('');
+  const [claimError, setClaimError] = useState('');
+  const [claimSuccess, setClaimSuccess] = useState('');
+
+  const claimMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiClient.post(`/restaurants/${id}/claim`, data);
+      return response.data;
+    },
+    onSuccess: () => {
+      setClaimSuccess('Your claim request has been submitted. We will review it shortly.');
+      setShowClaimForm(false);
+      setClaimPhone('');
+      setClaimNotes('');
+      setClaimError('');
+    },
+    onError: (err: any) => {
+      setClaimError(err.response?.data?.message || 'Claim submission failed');
+    },
+  });
 
   const isOwner = user?.roles?.some(r => ['RESTAURANT_OWNER', 'ADMIN', 'SUPER_ADMIN'].includes(r));
 
@@ -120,6 +143,64 @@ export default function RestaurantDetailsPage() {
             ✍️ Write Review
           </button>
         </div>
+      </div>
+
+      {/* Claim Restaurant Section */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="text-lg font-bold text-yellow-800">🏪 Are you the owner of this restaurant?</h2>
+            <p className="text-sm text-yellow-700 mt-1">
+              Claim this restaurant to manage your profile, update information, respond to reviews, and more.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowClaimForm(!showClaimForm)}
+            className="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 whitespace-nowrap"
+          >
+            Claim This Restaurant
+          </button>
+        </div>
+
+        {showClaimForm && (
+          <div className="mt-4 border-t border-yellow-200 pt-4">
+            {claimError && (
+              <div className="bg-red-50 text-red-600 p-3 rounded-md mb-3 text-sm">{claimError}</div>
+            )}
+            {claimSuccess && (
+              <div className="bg-green-50 text-green-600 p-3 rounded-md mb-3 text-sm">{claimSuccess}</div>
+            )}
+            <div className="space-y-3">
+              <input
+                type="text"
+                value={claimPhone}
+                onChange={(e) => setClaimPhone(e.target.value)}
+                placeholder="Your phone number"
+                className="w-full px-3 py-2 border rounded-md text-sm"
+              />
+              <textarea
+                value={claimNotes}
+                onChange={(e) => setClaimNotes(e.target.value)}
+                placeholder="Additional notes (optional)"
+                rows={3}
+                className="w-full px-3 py-2 border rounded-md text-sm"
+              />
+              <button
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    alert('Please login or register to claim this restaurant.');
+                    return;
+                  }
+                  claimMutation.mutate({ phone: claimPhone, notes: claimNotes });
+                }}
+                disabled={claimMutation.isPending}
+                className="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:opacity-50 text-sm"
+              >
+                {claimMutation.isPending ? 'Submitting...' : 'Submit Claim Request'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Photo Gallery */}
