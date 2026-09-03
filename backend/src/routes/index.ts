@@ -18,6 +18,7 @@ import { ImportController } from '../controllers/importController';
 import { PhotoController } from '../controllers/photoController';
 import { uploadImage } from '../middleware/upload';
 import { NotificationController } from '../controllers/notificationController';
+import { EnhancedImportController } from '../controllers/enhancedImportController';
 
 const router = Router();
 
@@ -39,6 +40,7 @@ const reportController = new ReportController();
 const importController = new ImportController();
 const photoController = new PhotoController();
 const notificationController = new NotificationController();
+const enhancedImportController = new EnhancedImportController();
 
 
 // Health check
@@ -105,6 +107,13 @@ router.delete('/review-responses/:id', authenticate, reviewResponseController.de
 router.get('/notifications', authenticate, notificationController.getNotifications.bind(notificationController));
 router.put('/notifications/:id/read', authenticate, notificationController.markAsRead.bind(notificationController));
 router.put('/notifications/read-all', authenticate, notificationController.markAllAsRead.bind(notificationController));
+
+// Enhanced import routes
+router.get('/admin/import/restaurants/search', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), enhancedImportController.searchRestaurants.bind(enhancedImportController));
+router.post('/admin/import/restaurants/preview', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), enhancedImportController.previewImport.bind(enhancedImportController));
+router.post('/admin/import/restaurants', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), enhancedImportController.importRestaurants.bind(enhancedImportController));
+router.get('/admin/import/restaurants/history', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), enhancedImportController.getImportHistory.bind(enhancedImportController));
+
 
 // Admin dashboard
 router.get(

@@ -1,0 +1,2807 @@
+{
+  "users": [
+    {
+      "id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "first_name": "Test",
+      "last_name": "Owner",
+      "email": "owner@example.com",
+      "phone": null,
+      "password_hash": "$2b$12$iiYgbVS/nOOPMVJ7q1d2JuFLKKTzAmxEkgSQERPIbyo2eH.ppVtGq",
+      "profile_photo": null,
+      "status": "ACTIVE",
+      "email_verified": false,
+      "phone_verified": false,
+      "created_at": "2026-09-02T10:55:37.175Z",
+      "updated_at": "2026-09-02T10:55:37.175Z",
+      "last_login": null,
+      "reset_password_token": null,
+      "reset_password_expires": null,
+      "email_verification_token": "afcbf425bbb5fc1f2905133554b91add48db18387eb1112c8b2cc89d73db4582",
+      "email_verification_expires": "2026-09-03T10:55:37.274Z"
+    },
+    {
+      "id": "a762c106-6923-47d8-bc55-40b5f5b79ebd",
+      "first_name": "Test",
+      "last_name": "User2",
+      "email": "testuser2@example.com",
+      "phone": "0781354061",
+      "password_hash": "$2b$12$hMlTLbV4cn0WHiklppTrr.K349rYq6/KRMHoZQOpN5Q7gcvXHHmkm",
+      "profile_photo": null,
+      "status": "ACTIVE",
+      "email_verified": false,
+      "phone_verified": false,
+      "created_at": "2026-09-02T11:26:48.360Z",
+      "updated_at": "2026-09-02T11:26:48.360Z",
+      "last_login": null,
+      "reset_password_token": null,
+      "reset_password_expires": null,
+      "email_verification_token": "673f29243419203c8e0b7218498ad6553c1d952e7d6dee9bf8871289ce0f2f46",
+      "email_verification_expires": "2026-09-03T11:26:48.451Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "eed31bac-c470-4e17-8674-9d26c4362400",
+      "name": "USER",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.210Z"
+    },
+    {
+      "id": "9f64c7f5-e91e-4798-835b-d6454875a271",
+      "name": "RESTAURANT_OWNER",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.265Z"
+    },
+    {
+      "id": "119eae93-2f7d-42d7-b9ea-953fe5e0bd4e",
+      "name": "RESTAURANT_MANAGER",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.320Z"
+    },
+    {
+      "id": "8d3c8b8d-fb76-48ae-b07c-2807a85a48f5",
+      "name": "MODERATOR",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.373Z"
+    },
+    {
+      "id": "1738a8ba-3ba9-40c5-b00b-3f6e9d40aefc",
+      "name": "ADMIN",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.426Z"
+    },
+    {
+      "id": "91b9f4dd-656a-4e98-a68d-f535d59f0ba5",
+      "name": "SUPER_ADMIN",
+      "description": null,
+      "created_at": "2026-09-02T10:45:38.478Z"
+    }
+  ],
+  "user_roles": [
+    {
+      "user_id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "role_id": "eed31bac-c470-4e17-8674-9d26c4362400"
+    },
+    {
+      "user_id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "role_id": "9f64c7f5-e91e-4798-835b-d6454875a271"
+    },
+    {
+      "user_id": "a762c106-6923-47d8-bc55-40b5f5b79ebd",
+      "role_id": "eed31bac-c470-4e17-8674-9d26c4362400"
+    }
+  ],
+  "wilayas": [
+    {
+      "id": 1,
+      "code": "01",
+      "name_fr": "Adrar",
+      "name_ar": "أدرار",
+      "name_en": "Adrar",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "name_fr": "Chlef",
+      "name_ar": "الشلف",
+      "name_en": "Chlef",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "name_fr": "Laghouat",
+      "name_ar": "الأغواط",
+      "name_en": "Laghouat",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "name_fr": "Oum El Bouaghi",
+      "name_ar": "أم البواقي",
+      "name_en": "Oum El Bouaghi",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "name_fr": "Batna",
+      "name_ar": "باتنة",
+      "name_en": "Batna",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "name_fr": "Béjaïa",
+      "name_ar": "بجاية",
+      "name_en": "Bejaia",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "name_fr": "Biskra",
+      "name_ar": "بسكرة",
+      "name_en": "Biskra",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "name_fr": "Béchar",
+      "name_ar": "بشار",
+      "name_en": "Bechar",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "name_fr": "Blida",
+      "name_ar": "البليدة",
+      "name_en": "Blida",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "name_fr": "Bouira",
+      "name_ar": "البويرة",
+      "name_en": "Bouira",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "name_fr": "Tamanrasset",
+      "name_ar": "تمنراست",
+      "name_en": "Tamanrasset",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "name_fr": "Tébessa",
+      "name_ar": "تبسة",
+      "name_en": "Tebessa",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "name_fr": "Tlemcen",
+      "name_ar": "تلمسان",
+      "name_en": "Tlemcen",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "name_fr": "Tiaret",
+      "name_ar": "تيارت",
+      "name_en": "Tiaret",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "name_fr": "Tizi Ouzou",
+      "name_ar": "تيزي وزو",
+      "name_en": "Tizi Ouzou",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "name_fr": "Alger",
+      "name_ar": "الجزائر",
+      "name_en": "Algiers",
+      "latitude": "36.75380000",
+      "longitude": "3.05880000"
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "name_fr": "Djelfa",
+      "name_ar": "الجلفة",
+      "name_en": "Djelfa",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "name_fr": "Jijel",
+      "name_ar": "جيجل",
+      "name_en": "Jijel",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "name_fr": "Sétif",
+      "name_ar": "سطيف",
+      "name_en": "Setif",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "name_fr": "Saïda",
+      "name_ar": "سعيدة",
+      "name_en": "Saida",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "name_fr": "Skikda",
+      "name_ar": "سكيكدة",
+      "name_en": "Skikda",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "name_fr": "Sidi Bel Abbès",
+      "name_ar": "سيدي بلعباس",
+      "name_en": "Sidi Bel Abbes",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "name_fr": "Annaba",
+      "name_ar": "عنابة",
+      "name_en": "Annaba",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "name_fr": "Guelma",
+      "name_ar": "قالمة",
+      "name_en": "Guelma",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "name_fr": "Constantine",
+      "name_ar": "قسنطينة",
+      "name_en": "Constantine",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "name_fr": "Médéa",
+      "name_ar": "المدية",
+      "name_en": "Medea",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "name_fr": "Mostaganem",
+      "name_ar": "مستغانم",
+      "name_en": "Mostaganem",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "name_fr": "M'Sila",
+      "name_ar": "المسيلة",
+      "name_en": "M'Sila",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 29,
+      "code": "29",
+      "name_fr": "Mascara",
+      "name_ar": "معسكر",
+      "name_en": "Mascara",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 30,
+      "code": "30",
+      "name_fr": "Ouargla",
+      "name_ar": "ورقلة",
+      "name_en": "Ouargla",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 31,
+      "code": "31",
+      "name_fr": "Oran",
+      "name_ar": "وهران",
+      "name_en": "Oran",
+      "latitude": "35.69870000",
+      "longitude": "-0.63490000"
+    },
+    {
+      "id": 32,
+      "code": "32",
+      "name_fr": "El Bayadh",
+      "name_ar": "البيض",
+      "name_en": "El Bayadh",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 33,
+      "code": "33",
+      "name_fr": "Illizi",
+      "name_ar": "إليزي",
+      "name_en": "Illizi",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 34,
+      "code": "34",
+      "name_fr": "Bordj Bou Arreridj",
+      "name_ar": "برج بوعريريج",
+      "name_en": "Bordj Bou Arreridj",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 35,
+      "code": "35",
+      "name_fr": "Boumerdès",
+      "name_ar": "بومرداس",
+      "name_en": "Boumerdes",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 36,
+      "code": "36",
+      "name_fr": "El Tarf",
+      "name_ar": "الطارف",
+      "name_en": "El Tarf",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 37,
+      "code": "37",
+      "name_fr": "Tindouf",
+      "name_ar": "تندوف",
+      "name_en": "Tindouf",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 38,
+      "code": "38",
+      "name_fr": "Tissemsilt",
+      "name_ar": "تيسمسيلت",
+      "name_en": "Tissemsilt",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 39,
+      "code": "39",
+      "name_fr": "El Oued",
+      "name_ar": "الوادي",
+      "name_en": "El Oued",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 40,
+      "code": "40",
+      "name_fr": "Khenchela",
+      "name_ar": "خنشلة",
+      "name_en": "Khenchela",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 41,
+      "code": "41",
+      "name_fr": "Souk Ahras",
+      "name_ar": "سوق أهراس",
+      "name_en": "Souk Ahras",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 42,
+      "code": "42",
+      "name_fr": "Tipaza",
+      "name_ar": "تيبازة",
+      "name_en": "Tipaza",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 43,
+      "code": "43",
+      "name_fr": "Mila",
+      "name_ar": "ميلة",
+      "name_en": "Mila",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 44,
+      "code": "44",
+      "name_fr": "Aïn Defla",
+      "name_ar": "عين الدفلى",
+      "name_en": "Ain Defla",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 45,
+      "code": "45",
+      "name_fr": "Naâma",
+      "name_ar": "النعامة",
+      "name_en": "Naama",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 46,
+      "code": "46",
+      "name_fr": "Aïn Témouchent",
+      "name_ar": "عين تموشنت",
+      "name_en": "Ain Temouchent",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 47,
+      "code": "47",
+      "name_fr": "Ghardaïa",
+      "name_ar": "غرداية",
+      "name_en": "Ghardaia",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 48,
+      "code": "48",
+      "name_fr": "Relizane",
+      "name_ar": "غليزان",
+      "name_en": "Relizane",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 49,
+      "code": "49",
+      "name_fr": "Timimoun",
+      "name_ar": "تيميمون",
+      "name_en": "Timimoun",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 50,
+      "code": "50",
+      "name_fr": "Bordj Badji Mokhtar",
+      "name_ar": "برج باجي مختار",
+      "name_en": "Bordj Badji Mokhtar",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 51,
+      "code": "51",
+      "name_fr": "Ouled Djellal",
+      "name_ar": "أولاد جلال",
+      "name_en": "Ouled Djellal",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 52,
+      "code": "52",
+      "name_fr": "Béni Abbès",
+      "name_ar": "بني عباس",
+      "name_en": "Beni Abbes",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 53,
+      "code": "53",
+      "name_fr": "In Salah",
+      "name_ar": "عين صالح",
+      "name_en": "In Salah",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 54,
+      "code": "54",
+      "name_fr": "In Guezzam",
+      "name_ar": "عين قزام",
+      "name_en": "In Guezzam",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 55,
+      "code": "55",
+      "name_fr": "Touggourt",
+      "name_ar": "تقرت",
+      "name_en": "Touggourt",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 56,
+      "code": "56",
+      "name_fr": "Djanet",
+      "name_ar": "جانت",
+      "name_en": "Djanet",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 57,
+      "code": "57",
+      "name_fr": "El M'Ghair",
+      "name_ar": "المغير",
+      "name_en": "El M'Ghair",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": 58,
+      "code": "58",
+      "name_fr": "El Meniaa",
+      "name_ar": "المنيعة",
+      "name_en": "El Meniaa",
+      "latitude": null,
+      "longitude": null
+    }
+  ],
+  "dairas": [
+    {
+      "id": 1601,
+      "wilaya_id": 16,
+      "code": "1601",
+      "name_fr": "Alger Centre",
+      "name_ar": "الجزائر الوسطى",
+      "name_en": "Alger Centre"
+    },
+    {
+      "id": 1602,
+      "wilaya_id": 16,
+      "code": "1602",
+      "name_fr": "Bab El Oued",
+      "name_ar": "باب الوادي",
+      "name_en": "Bab El Oued"
+    },
+    {
+      "id": 1603,
+      "wilaya_id": 16,
+      "code": "1603",
+      "name_fr": "Baraki",
+      "name_ar": "براقي",
+      "name_en": "Baraki"
+    },
+    {
+      "id": 1604,
+      "wilaya_id": 16,
+      "code": "1604",
+      "name_fr": "Bir Mourad Raïs",
+      "name_ar": "بير مراد رايس",
+      "name_en": "Bir Mourad Raïs"
+    },
+    {
+      "id": 1605,
+      "wilaya_id": 16,
+      "code": "1605",
+      "name_fr": "Birtouta",
+      "name_ar": "بير توتة",
+      "name_en": "Birtouta"
+    },
+    {
+      "id": 1606,
+      "wilaya_id": 16,
+      "code": "1606",
+      "name_fr": "Bouzareah",
+      "name_ar": "بوزريعة",
+      "name_en": "Bouzareah"
+    },
+    {
+      "id": 1607,
+      "wilaya_id": 16,
+      "code": "1607",
+      "name_fr": "Cheraga",
+      "name_ar": "الشراقة",
+      "name_en": "Cheraga"
+    },
+    {
+      "id": 1608,
+      "wilaya_id": 16,
+      "code": "1608",
+      "name_fr": "Dar El Beïda",
+      "name_ar": "الدار البيضاء",
+      "name_en": "Dar El Beïda"
+    },
+    {
+      "id": 1609,
+      "wilaya_id": 16,
+      "code": "1609",
+      "name_fr": "Draria",
+      "name_ar": "الدرارية",
+      "name_en": "Draria"
+    },
+    {
+      "id": 1610,
+      "wilaya_id": 16,
+      "code": "1610",
+      "name_fr": "El Harrach",
+      "name_ar": "الحراش",
+      "name_en": "El Harrach"
+    },
+    {
+      "id": 1611,
+      "wilaya_id": 16,
+      "code": "1611",
+      "name_fr": "Hussein Dey",
+      "name_ar": "حسين داي",
+      "name_en": "Hussein Dey"
+    },
+    {
+      "id": 1612,
+      "wilaya_id": 16,
+      "code": "1612",
+      "name_fr": "Rouïba",
+      "name_ar": "الرويبة",
+      "name_en": "Rouïba"
+    },
+    {
+      "id": 1613,
+      "wilaya_id": 16,
+      "code": "1613",
+      "name_fr": "Zéralda",
+      "name_ar": "زرالدة",
+      "name_en": "Zéralda"
+    },
+    {
+      "id": 3101,
+      "wilaya_id": 31,
+      "code": "3101",
+      "name_fr": "Oran",
+      "name_ar": "وهران",
+      "name_en": "Oran"
+    },
+    {
+      "id": 3102,
+      "wilaya_id": 31,
+      "code": "3102",
+      "name_fr": "Aïn El Turk",
+      "name_ar": "عين الترك",
+      "name_en": "Aïn El Turk"
+    },
+    {
+      "id": 3103,
+      "wilaya_id": 31,
+      "code": "3103",
+      "name_fr": "Arzew",
+      "name_ar": "أرزيو",
+      "name_en": "Arzew"
+    },
+    {
+      "id": 3104,
+      "wilaya_id": 31,
+      "code": "3104",
+      "name_fr": "Bethioua",
+      "name_ar": "بطيوة",
+      "name_en": "Bethioua"
+    },
+    {
+      "id": 3105,
+      "wilaya_id": 31,
+      "code": "3105",
+      "name_fr": "Bir El Djir",
+      "name_ar": "بئر الجير",
+      "name_en": "Bir El Djir"
+    },
+    {
+      "id": 3106,
+      "wilaya_id": 31,
+      "code": "3106",
+      "name_fr": "Boutlélis",
+      "name_ar": "بوتليليس",
+      "name_en": "Boutlélis"
+    },
+    {
+      "id": 3107,
+      "wilaya_id": 31,
+      "code": "3107",
+      "name_fr": "Es Sénia",
+      "name_ar": "السانية",
+      "name_en": "Es Sénia"
+    },
+    {
+      "id": 3108,
+      "wilaya_id": 31,
+      "code": "3108",
+      "name_fr": "Gdyel",
+      "name_ar": "قديل",
+      "name_en": "Gdyel"
+    },
+    {
+      "id": 3109,
+      "wilaya_id": 31,
+      "code": "3109",
+      "name_fr": "Oued Tlélat",
+      "name_ar": "وادي تليلات",
+      "name_en": "Oued Tlélat"
+    },
+    {
+      "id": 501,
+      "wilaya_id": 5,
+      "code": "0501",
+      "name_fr": "Batna",
+      "name_ar": "باتنة",
+      "name_en": "Batna"
+    },
+    {
+      "id": 502,
+      "wilaya_id": 5,
+      "code": "0502",
+      "name_fr": "Aïn Djasser",
+      "name_ar": "عين جاسر",
+      "name_en": "Aïn Djasser"
+    },
+    {
+      "id": 503,
+      "wilaya_id": 5,
+      "code": "0503",
+      "name_fr": "Aïn Touta",
+      "name_ar": "عين التوتة",
+      "name_en": "Aïn Touta"
+    },
+    {
+      "id": 504,
+      "wilaya_id": 5,
+      "code": "0504",
+      "name_fr": "Arris",
+      "name_ar": "آريس",
+      "name_en": "Arris"
+    },
+    {
+      "id": 505,
+      "wilaya_id": 5,
+      "code": "0505",
+      "name_fr": "Barika",
+      "name_ar": "بريكة",
+      "name_en": "Barika"
+    },
+    {
+      "id": 2501,
+      "wilaya_id": 25,
+      "code": "2501",
+      "name_fr": "Constantine",
+      "name_ar": "قسنطينة",
+      "name_en": "Constantine"
+    },
+    {
+      "id": 2502,
+      "wilaya_id": 25,
+      "code": "2502",
+      "name_fr": "Aïn Abid",
+      "name_ar": "عين عبيد",
+      "name_en": "Aïn Abid"
+    },
+    {
+      "id": 2503,
+      "wilaya_id": 25,
+      "code": "2503",
+      "name_fr": "El Khroub",
+      "name_ar": "الخروب",
+      "name_en": "El Khroub"
+    },
+    {
+      "id": 2504,
+      "wilaya_id": 25,
+      "code": "2504",
+      "name_fr": "Hamma Bouziane",
+      "name_ar": "حامة بوزيان",
+      "name_en": "Hamma Bouziane"
+    },
+    {
+      "id": 2505,
+      "wilaya_id": 25,
+      "code": "2505",
+      "name_fr": "Ibn Ziad",
+      "name_ar": "ابن زياد",
+      "name_en": "Ibn Ziad"
+    },
+    {
+      "id": 2506,
+      "wilaya_id": 25,
+      "code": "2506",
+      "name_fr": "Zighoud Youcef",
+      "name_ar": "زيغود يوسف",
+      "name_en": "Zighoud Youcef"
+    },
+    {
+      "id": 1901,
+      "wilaya_id": 19,
+      "code": "1901",
+      "name_fr": "Sétif",
+      "name_ar": "سطيف",
+      "name_en": "Sétif"
+    },
+    {
+      "id": 1902,
+      "wilaya_id": 19,
+      "code": "1902",
+      "name_fr": "Aïn Arnat",
+      "name_ar": "عين أرنات",
+      "name_en": "Aïn Arnat"
+    },
+    {
+      "id": 1903,
+      "wilaya_id": 19,
+      "code": "1903",
+      "name_fr": "Aïn Azel",
+      "name_ar": "عين أزال",
+      "name_en": "Aïn Azel"
+    },
+    {
+      "id": 1904,
+      "wilaya_id": 19,
+      "code": "1904",
+      "name_fr": "El Eulma",
+      "name_ar": "العلمة",
+      "name_en": "El Eulma"
+    },
+    {
+      "id": 1905,
+      "wilaya_id": 19,
+      "code": "1905",
+      "name_fr": "Djémila",
+      "name_ar": "جميلة",
+      "name_en": "Djémila"
+    },
+    {
+      "id": 901,
+      "wilaya_id": 9,
+      "code": "0901",
+      "name_fr": "Blida",
+      "name_ar": "البليدة",
+      "name_en": "Blida"
+    },
+    {
+      "id": 902,
+      "wilaya_id": 9,
+      "code": "0902",
+      "name_fr": "Boufarik",
+      "name_ar": "بوفاريك",
+      "name_en": "Boufarik"
+    },
+    {
+      "id": 903,
+      "wilaya_id": 9,
+      "code": "0903",
+      "name_fr": "Bougara",
+      "name_ar": "بوقرة",
+      "name_en": "Bougara"
+    },
+    {
+      "id": 904,
+      "wilaya_id": 9,
+      "code": "0904",
+      "name_fr": "El Affroun",
+      "name_ar": "العفرون",
+      "name_en": "El Affroun"
+    },
+    {
+      "id": 1301,
+      "wilaya_id": 13,
+      "code": "1301",
+      "name_fr": "Tlemcen",
+      "name_ar": "تلمسان",
+      "name_en": "Tlemcen"
+    },
+    {
+      "id": 1302,
+      "wilaya_id": 13,
+      "code": "1302",
+      "name_fr": "Maghnia",
+      "name_ar": "مغنية",
+      "name_en": "Maghnia"
+    },
+    {
+      "id": 1303,
+      "wilaya_id": 13,
+      "code": "1303",
+      "name_fr": "Nedroma",
+      "name_ar": "ندرومة",
+      "name_en": "Nedroma"
+    },
+    {
+      "id": 2301,
+      "wilaya_id": 23,
+      "code": "2301",
+      "name_fr": "Annaba",
+      "name_ar": "عنابة",
+      "name_en": "Annaba"
+    },
+    {
+      "id": 2302,
+      "wilaya_id": 23,
+      "code": "2302",
+      "name_fr": "El Bouni",
+      "name_ar": "البوني",
+      "name_en": "El Bouni"
+    },
+    {
+      "id": 2303,
+      "wilaya_id": 23,
+      "code": "2303",
+      "name_fr": "El Hadjar",
+      "name_ar": "الحجار",
+      "name_en": "El Hadjar"
+    },
+    {
+      "id": 3501,
+      "wilaya_id": 35,
+      "code": "3501",
+      "name_fr": "Boumerdès",
+      "name_ar": "بومرداس",
+      "name_en": "Boumerdès"
+    },
+    {
+      "id": 3502,
+      "wilaya_id": 35,
+      "code": "3502",
+      "name_fr": "Bordj Menaiel",
+      "name_ar": "برج منايل",
+      "name_en": "Bordj Menaiel"
+    },
+    {
+      "id": 3503,
+      "wilaya_id": 35,
+      "code": "3503",
+      "name_fr": "Dellys",
+      "name_ar": "دلس",
+      "name_en": "Dellys"
+    }
+  ],
+  "communes": [],
+  "categories": [
+    {
+      "id": "161e331a-8441-49a0-b737-4f4ae225a362",
+      "name_fr": "Pizza",
+      "name_ar": "بيتزا",
+      "name_en": "Pizza",
+      "icon": "🍕",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:50.904Z"
+    },
+    {
+      "id": "0b6a8fff-1890-461e-8d7f-6f3faad76dc2",
+      "name_fr": "Burger",
+      "name_ar": "برغر",
+      "name_en": "Burger",
+      "icon": "🍔",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:50.958Z"
+    },
+    {
+      "id": "404b4569-2ffb-439f-9131-af2d5fb6010a",
+      "name_fr": "Fast Food",
+      "name_ar": "وجبات سريعة",
+      "name_en": "Fast Food",
+      "icon": "🍟",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.011Z"
+    },
+    {
+      "id": "33484089-f926-4535-bd92-17c5e2d443aa",
+      "name_fr": "Traditionnel Algérien",
+      "name_ar": "تقليدي جزائري",
+      "name_en": "Traditional Algerian",
+      "icon": "🍲",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.066Z"
+    },
+    {
+      "id": "6c5515b1-45cd-4080-8351-8e3e46579b7d",
+      "name_fr": "Grill",
+      "name_ar": "مشاوي",
+      "name_en": "Grill",
+      "icon": "🍖",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.119Z"
+    },
+    {
+      "id": "6b2fc3f9-1d67-4870-a5d9-5112f072e6d1",
+      "name_fr": "Poisson",
+      "name_ar": "سمك",
+      "name_en": "Fish",
+      "icon": "🐟",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.199Z"
+    },
+    {
+      "id": "d592a271-97ac-4260-b750-39d082964755",
+      "name_fr": "Fruits de mer",
+      "name_ar": "مأكولات بحرية",
+      "name_en": "Seafood",
+      "icon": "🦞",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.255Z"
+    },
+    {
+      "id": "c40fe58c-5349-42ad-a4d0-68bd15e5bcba",
+      "name_fr": "Poulet",
+      "name_ar": "دجاج",
+      "name_en": "Chicken",
+      "icon": "🍗",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.317Z"
+    },
+    {
+      "id": "9112e47d-d511-447c-ad50-610ab7d5bf93",
+      "name_fr": "Italien",
+      "name_ar": "إيطالي",
+      "name_en": "Italian",
+      "icon": "🍝",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.372Z"
+    },
+    {
+      "id": "49b88593-cf4b-4ae8-b047-4eff14a8c8b4",
+      "name_fr": "Français",
+      "name_ar": "فرنسي",
+      "name_en": "French",
+      "icon": "🥖",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.427Z"
+    },
+    {
+      "id": "3dcaa3f7-fde3-439f-b29f-b5000b99633f",
+      "name_fr": "Asiatique",
+      "name_ar": "آسيوي",
+      "name_en": "Asian",
+      "icon": "🍜",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.484Z"
+    },
+    {
+      "id": "55b33bde-7c4a-4d91-9079-bd528c602f9f",
+      "name_fr": "Turc",
+      "name_ar": "تركي",
+      "name_en": "Turkish",
+      "icon": "🥙",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.539Z"
+    },
+    {
+      "id": "c8ed81d9-ff1d-4aff-8bd0-64100fa3a061",
+      "name_fr": "Café",
+      "name_ar": "مقهى",
+      "name_en": "Café",
+      "icon": "☕",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.594Z"
+    },
+    {
+      "id": "c93bdc36-eee1-4fc4-8fa2-94670fa20452",
+      "name_fr": "Boulangerie",
+      "name_ar": "مخبزة",
+      "name_en": "Bakery",
+      "icon": "🥐",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.649Z"
+    },
+    {
+      "id": "70ab57c2-508c-44f1-a22b-0d55d259aea4",
+      "name_fr": "Dessert",
+      "name_ar": "حلويات",
+      "name_en": "Dessert",
+      "icon": "🍰",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.704Z"
+    },
+    {
+      "id": "a889afe6-03a1-4e8b-8f58-2419164cdafe",
+      "name_fr": "Gastronomique",
+      "name_ar": "راقي",
+      "name_en": "Fine Dining",
+      "icon": "🍽️",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.760Z"
+    },
+    {
+      "id": "d475021a-cff2-4f20-8286-9171da85b7c5",
+      "name_fr": "Familial",
+      "name_ar": "عائلي",
+      "name_en": "Family Restaurant",
+      "icon": "👨‍👩‍👧‍👦",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.815Z"
+    }
+  ],
+  "cuisines": [
+    {
+      "id": "48378d79-89e5-455d-949a-0868193cc6f5",
+      "name_fr": "Algérienne",
+      "name_ar": "جزائرية",
+      "name_en": "Algerian",
+      "icon": "🇩🇿",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.870Z"
+    },
+    {
+      "id": "028b1398-5644-4c55-8af3-6403be00d987",
+      "name_fr": "Méditerranéenne",
+      "name_ar": "متوسطية",
+      "name_en": "Mediterranean",
+      "icon": "🫒",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.925Z"
+    },
+    {
+      "id": "02e533d6-3a16-4aca-b744-aafdfa2880d9",
+      "name_fr": "Orientale",
+      "name_ar": "شرقية",
+      "name_en": "Oriental",
+      "icon": "🕌",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:51.978Z"
+    },
+    {
+      "id": "da618a29-ec8a-4fc7-b64d-fa087787ee53",
+      "name_fr": "Française",
+      "name_ar": "فرنسية",
+      "name_en": "French",
+      "icon": "🥖",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:52.033Z"
+    },
+    {
+      "id": "755f604f-3179-4c5c-8af1-634ce82320e1",
+      "name_fr": "Italienne",
+      "name_ar": "إيطالية",
+      "name_en": "Italian",
+      "icon": "🍕",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:52.088Z"
+    },
+    {
+      "id": "e6517693-a325-4ca7-9233-57ddfad07f94",
+      "name_fr": "Asiatique",
+      "name_ar": "آسيوية",
+      "name_en": "Asian",
+      "icon": "🥢",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:52.146Z"
+    },
+    {
+      "id": "0e04298a-d60f-458c-907b-6ff639d3bb16",
+      "name_fr": "Turque",
+      "name_ar": "تركية",
+      "name_en": "Turkish",
+      "icon": "🥙",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:52.201Z"
+    },
+    {
+      "id": "60f291c7-0f71-4270-ad0b-a58fdba0001a",
+      "name_fr": "Américaine",
+      "name_ar": "أمريكية",
+      "name_en": "American",
+      "icon": "🍔",
+      "status": "ACTIVE",
+      "created_at": "2026-09-02T10:45:52.256Z"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "05b38be4-0002-4204-8e38-8e41d37910aa",
+      "name": "Simple Test",
+      "slug": "simple-test",
+      "description": null,
+      "phone": null,
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": null,
+      "wilaya_id": null,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": null,
+      "longitude": null,
+      "price_level": 1,
+      "status": "PENDING",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "created_at": "2026-09-02T10:58:15.065Z",
+      "updated_at": "2026-09-02T10:58:15.065Z",
+      "deleted_at": null,
+      "location": null
+    },
+    {
+      "id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "name": "Dar El Bahdja",
+      "slug": "dar-el-bahdja",
+      "description": "Restaurant traditionnel algérien au cœur d'Alger. Couscous royal et plats authentiques.",
+      "phone": "021234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "12 Rue Didouche Mourad, Alger Centre",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.76500000",
+      "longitude": "3.05100000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:47.401Z",
+      "updated_at": "2026-09-02T10:49:47.401Z",
+      "deleted_at": null,
+      "location": "0101000020E61000009CC420B07268084052B81E85EB614240"
+    },
+    {
+      "id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "name": "Pizza Roma",
+      "slug": "pizza-roma",
+      "description": "Pizzas artisanales au feu de bois. Ingrédients importés d'Italie.",
+      "phone": "021345678",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "45 Boulevard Krim Belkacem, Alger Centre",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.77100000",
+      "longitude": "3.05500000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:47.838Z",
+      "updated_at": "2026-09-02T10:49:47.838Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000713D0AD7A3700840A69BC420B0624240"
+    },
+    {
+      "id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "name": "Le Grill Algérois",
+      "slug": "le-grill-algrois",
+      "description": "Grillades et viandes sélectionnées. Spécialité de méchoui.",
+      "phone": "021567890",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "8 Rue des Frères Bouadou, Bir Mourad Rais",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.74000000",
+      "longitude": "3.05000000",
+      "price_level": 3,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:48.315Z",
+      "updated_at": "2026-09-02T10:49:48.315Z",
+      "deleted_at": null,
+      "location": "0101000020E610000066666666666608401F85EB51B85E4240"
+    },
+    {
+      "id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "name": "Café Tantonville",
+      "slug": "caf-tantonville",
+      "description": "Café historique au centre d'Alger. Idéal pour le café et les pâtisseries.",
+      "phone": "021456789",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Place Maurice Audin, Alger Centre",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.76100000",
+      "longitude": "3.05500000",
+      "price_level": 1,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:48.768Z",
+      "updated_at": "2026-09-02T10:49:48.768Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000713D0AD7A3700840C520B07268614240"
+    },
+    {
+      "id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "name": "Tacos de Bruxelles",
+      "slug": "tacos-de-bruxelles",
+      "description": "Fast food populaire. Tacos et sandwiches variés.",
+      "phone": "0550123456",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue Hassiba Ben Bouali, Alger",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.74800000",
+      "longitude": "3.06000000",
+      "price_level": 1,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:49.194Z",
+      "updated_at": "2026-09-02T10:49:49.194Z",
+      "deleted_at": null,
+      "location": "0101000020E61000007B14AE47E17A084039B4C876BE5F4240"
+    },
+    {
+      "id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "name": "Le Petit Resto",
+      "slug": "le-petit-resto",
+      "description": "Cuisine méditerranéenne avec vue sur la mer.",
+      "phone": "041234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Boulevard de la Soummam, Oran",
+      "wilaya_id": 31,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "35.70100000",
+      "longitude": "-0.63800000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:49.626Z",
+      "updated_at": "2026-09-02T10:49:49.626Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000D122DBF97E6AE4BF7D3F355EBAD94140"
+    },
+    {
+      "id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "name": "Pizza Uno Oran",
+      "slug": "pizza-uno-oran",
+      "description": "Pizzas et pâtes fraîches. Ambiance familiale.",
+      "phone": "041345678",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue Larbi Ben Mhidi, Oran",
+      "wilaya_id": 31,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "35.70400000",
+      "longitude": "-0.64500000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:50.058Z",
+      "updated_at": "2026-09-02T10:49:50.058Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000A4703D0AD7A3E4BF273108AC1CDA4140"
+    },
+    {
+      "id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "name": "Dar El Bahdja Oran",
+      "slug": "dar-el-bahdja-oran",
+      "description": "Cuisine oranaise traditionnelle. Couscous et poissons frais.",
+      "phone": "041456789",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Front de Mer, Oran",
+      "wilaya_id": 31,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "35.70700000",
+      "longitude": "-0.64200000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:50.482Z",
+      "updated_at": "2026-09-02T10:49:50.482Z",
+      "deleted_at": null,
+      "location": "0101000020E610000025068195438BE4BFD122DBF97EDA4140"
+    },
+    {
+      "id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "name": "Restaurant Cirta",
+      "slug": "restaurant-cirta",
+      "description": "Cuisine constantinoise traditionnelle. Chakhchoukha et plats régionaux.",
+      "phone": "031234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue Belouizdad, Constantine",
+      "wilaya_id": 25,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.36500000",
+      "longitude": "6.61400000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:50.977Z",
+      "updated_at": "2026-09-02T10:49:50.977Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000DBF97E6ABC741A401F85EB51B82E4240"
+    },
+    {
+      "id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "name": "Fast Food Numidia",
+      "slug": "fast-food-numidia",
+      "description": "Burgers et fast food rapide au centre-ville.",
+      "phone": "031345678",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Avenue de la République, Constantine",
+      "wilaya_id": 25,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.35900000",
+      "longitude": "6.60900000",
+      "price_level": 1,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:51.406Z",
+      "updated_at": "2026-09-02T10:49:51.406Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000560E2DB29D6F1A40CBA145B6F32D4240"
+    },
+    {
+      "id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "name": "Restaurant Le Phare",
+      "slug": "restaurant-le-phare",
+      "description": "Fruits de mer et cuisine méditerranéenne avec vue sur mer.",
+      "phone": "038234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Cours de la Révolution, Annaba",
+      "wilaya_id": 23,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.90000000",
+      "longitude": "7.76700000",
+      "price_level": 3,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:51.836Z",
+      "updated_at": "2026-09-02T10:49:51.836Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000C520B07268111F403333333333734240"
+    },
+    {
+      "id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "name": "Café Saf-Saf",
+      "slug": "caf-saf-saf",
+      "description": "Café traditionnel au cœur d'Annaba.",
+      "phone": "038345678",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Place du 1er Novembre, Annaba",
+      "wilaya_id": 23,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.89900000",
+      "longitude": "7.76000000",
+      "price_level": 1,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:52.285Z",
+      "updated_at": "2026-09-02T10:49:52.285Z",
+      "deleted_at": null,
+      "location": "0101000020E61000000AD7A3703D0A1F40508D976E12734240"
+    },
+    {
+      "id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "name": "Restaurant High Plateau",
+      "slug": "restaurant-high-plateau",
+      "description": "Couscous sétifien et grillades. Spécialités régionales.",
+      "phone": "036234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue des Frères Achour, Sétif",
+      "wilaya_id": 19,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.19100000",
+      "longitude": "5.41000000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:52.781Z",
+      "updated_at": "2026-09-02T10:49:52.781Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000A4703D0AD7A315409CC420B072184240"
+    },
+    {
+      "id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "name": "Restaurant Aurès",
+      "slug": "restaurant-aurs",
+      "description": "Spécialités des Aurès. Méchoui et plats traditionnels.",
+      "phone": "033234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Avenue de l'Indépendance, Batna",
+      "wilaya_id": 5,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "35.55500000",
+      "longitude": "6.17400000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:53.531Z",
+      "updated_at": "2026-09-02T10:49:53.531Z",
+      "deleted_at": null,
+      "location": "0101000020E61000001904560E2DB21840D7A3703D0AC74140"
+    },
+    {
+      "id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "name": "Restaurant Les Zianides",
+      "slug": "restaurant-les-zianides",
+      "description": "Cuisine tlemcenienne raffinée. Plats traditionnels.",
+      "phone": "043234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue de la Paix, Tlemcen",
+      "wilaya_id": 13,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "34.88200000",
+      "longitude": "-1.31500000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:53.956Z",
+      "updated_at": "2026-09-02T10:49:53.956Z",
+      "deleted_at": null,
+      "location": "0101000020E61000000AD7A3703D0AF5BF37894160E5704140"
+    },
+    {
+      "id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "name": "Restaurant Les Orangers",
+      "slug": "restaurant-les-orangers",
+      "description": "Cuisine algérienne dans un cadre agréable. Spécialité de couscous.",
+      "phone": "025234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Boulevard des Martyrs, Blida",
+      "wilaya_id": 9,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.47200000",
+      "longitude": "2.82800000",
+      "price_level": 2,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:54.378Z",
+      "updated_at": "2026-09-02T10:49:54.378Z",
+      "deleted_at": null,
+      "location": "0101000020E610000039B4C876BE9F064023DBF97E6A3C4240"
+    },
+    {
+      "id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "name": "Restaurant La Corniche",
+      "slug": "restaurant-la-corniche",
+      "description": "Poissons et fruits de mer avec vue sur la Méditerranée.",
+      "phone": "024234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Boulevard du Front de Mer, Boumerdès",
+      "wilaya_id": 35,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.75400000",
+      "longitude": "3.47500000",
+      "price_level": 3,
+      "status": "ACTIVE",
+      "verified": true,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:54.803Z",
+      "updated_at": "2026-09-02T10:49:54.803Z",
+      "deleted_at": null,
+      "location": "0101000020E6100000CDCCCCCCCCCC0B408D976E1283604240"
+    },
+    {
+      "id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "name": "Boulangerie Patisserie Atlas",
+      "slug": "boulangerie-patisserie-atlas",
+      "description": "Boulangerie traditionnelle avec pâtisseries orientales.",
+      "phone": "026234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "Rue de la République, Bouira",
+      "wilaya_id": 10,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.37500000",
+      "longitude": "3.90200000",
+      "price_level": 1,
+      "status": "ACTIVE",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": null,
+      "created_at": "2026-09-02T10:49:55.227Z",
+      "updated_at": "2026-09-02T10:49:55.227Z",
+      "deleted_at": null,
+      "location": "0101000020E61000009EEFA7C64B370F400000000000304240"
+    },
+    {
+      "id": "3b9b47e3-c971-4052-9a4b-1ebbf17c5983",
+      "name": "My New Restaurant",
+      "slug": "my-new-restaurant",
+      "description": "A restaurant created by a user",
+      "phone": "0551234567",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "123 Street, Alger",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.75500000",
+      "longitude": "3.04500000",
+      "price_level": 2,
+      "status": "PENDING",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "created_at": "2026-09-02T10:56:03.533Z",
+      "updated_at": "2026-09-02T10:56:03.533Z",
+      "deleted_at": null,
+      "location": "0101000020E61000005C8FC2F5285C0840713D0AD7A3604240"
+    },
+    {
+      "id": "21265bf8-69bc-45d2-9a8a-360dd4355f1d",
+      "name": "Full Restaurant",
+      "slug": "full-restaurant",
+      "description": "Complete restaurant with location",
+      "phone": "0551112233",
+      "secondary_phone": null,
+      "email": null,
+      "website": null,
+      "address": "45 Avenue Test, Alger",
+      "wilaya_id": 16,
+      "daira_id": null,
+      "commune_id": null,
+      "latitude": "36.76000000",
+      "longitude": "3.05000000",
+      "price_level": 2,
+      "status": "PENDING",
+      "verified": false,
+      "verified_at": null,
+      "owner_id": "c436f62f-12af-45e0-9b96-d6bef4fe0555",
+      "created_at": "2026-09-02T11:01:19.227Z",
+      "updated_at": "2026-09-02T11:01:19.227Z",
+      "deleted_at": null,
+      "location": "0101000020E61000006666666666660840E17A14AE47614240"
+    }
+  ],
+  "restaurant_categories": [],
+  "restaurant_cuisines": [],
+  "opening_hours": [
+    {
+      "id": "710f202f-db96-4d86-af18-71a160e9054e",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "ddaea4e2-03aa-4c8b-870b-abaab73fdbbc",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "e1a2d4d0-8c02-437d-b097-c88af24bdfa6",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "36fb0d8c-c5dd-4ad5-8982-f27340ae4a75",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "fee0aa47-1337-4a3a-bbc5-741ee6727028",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "86c95a0a-756d-492e-90f5-add3e39300f3",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "9fb5f2e1-41be-4527-ae39-a80c210d3d25",
+      "restaurant_id": "584c2d7d-7b71-455e-979c-78779b879b59",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "07d4a281-a6d1-494d-9edc-deeac49450c4",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "631e237b-7009-4b16-9efc-7b5915335911",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "ee021fdc-cdc4-4dee-93a0-773b12df50a9",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "4bb00fc0-af22-40ae-88ba-7ca182b648af",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5dbef925-5c25-4a2b-8d97-2cbccf330cda",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "156b6228-23ef-4cd2-8ae8-9ab70e0088cf",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b69a867a-5b20-4517-8058-2b3220406945",
+      "restaurant_id": "8cf2d72e-f075-4ea7-978f-b6d228b9e39b",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "73924cdb-622f-4733-b905-2cbdf4b02c12",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "402dbe21-e5ff-4192-b217-18466f2cb2ba",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6ee70f2d-9249-4391-9243-4d2f0d495c37",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "1a4cbf0f-c96a-4223-b625-dbe4078d0c6b",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c4d23f1b-e3c5-4f73-b56a-cb661539b904",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "ac2bd04d-6edb-4486-a8e6-d586f3182b70",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b8769dbb-989d-42d4-88a9-3d3a9051029d",
+      "restaurant_id": "cca57afa-9172-453b-b82c-0817fd511bc6",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "aa5a73fb-593c-4a6b-9784-52d7a96cb423",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "8c57baa6-dbb1-4316-99cf-cba52adf6f88",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f4862320-bbf2-428b-93a2-e543d271a273",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "3932096e-27f2-46c6-af39-43560ebe8fce",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "bfcf3670-2074-4615-8cff-f4a16d141a5c",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "943f4bd4-afad-4433-baf9-f096a9fd8c9b",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "d5fb2946-b24f-456c-96c9-ed3525cb07bd",
+      "restaurant_id": "f2f433f2-fa7b-40d2-96ae-695a3dd9edf1",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "8f678a79-2634-4d1a-9621-c66d017093e7",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "1a4927e3-e007-47ba-bc00-ee0a0caed047",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6e425d4d-7a78-460d-bb6b-039624399ea0",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "bc96c91a-d1a0-47f5-b7da-e3c9421cfcc5",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b903efbf-4756-4069-81b1-699a72e5bd25",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "8cbb4dc6-7e1f-4630-a7d9-adea472928a1",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "28cc0e79-78b4-4fa3-88b3-47e3e4169876",
+      "restaurant_id": "56dab325-e74b-4a7b-85f0-ca2829bcd894",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "a3330893-bae6-4e86-acca-f4221780c804",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "cbbb2d4b-120f-42a7-a1e9-e45b1caba416",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0f0e0ffc-401e-4121-8bd9-364908189fc2",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0a0ebb29-b3da-4ea5-b67a-3ee829afe85e",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f9659245-924d-44bb-994e-41b96d25eba1",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "18fba612-313b-4c28-8fdc-aba9964e46a9",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "04fa6b83-7bcb-459d-8b6c-e7dfbd219cee",
+      "restaurant_id": "9150c043-0b2f-47b2-be98-9be846ebbe07",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "73981aa2-6405-4981-8bc2-a4daa1044ff5",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "2af51bc1-187f-4b7f-a3e5-b457658f0f21",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0c155638-9376-4db1-91ac-dee2927db208",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f95b6f04-6d31-4958-8dfc-9468f8d30312",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "91d493ff-e884-4d92-a28d-372f5e006c6e",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c536e68c-a25b-4e0c-92fc-6a5585c46752",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "a0e6ec9b-0889-4bee-87f5-f4cd6b330f85",
+      "restaurant_id": "9c1de3a7-c662-4de4-b5a7-81b013c0afb3",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0a40456b-e259-409a-b541-00f9294c1bfa",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "324adbde-89dc-4128-94b4-2e4b270155e8",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "53d6796b-8205-4542-aa72-5012ce985cf1",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b97c6814-a3e5-4ae9-8e89-9a698b57cfe9",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "bf62d054-e079-455b-932f-aa2aa151291e",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "450e52a2-0943-4752-8056-44adf00626af",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0f0c1925-ca40-4792-ac21-775084b52767",
+      "restaurant_id": "145552ea-b909-44d9-8372-a817b5c56a75",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "a8aa683b-e5e5-4b3d-be2d-e007caf29f07",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "900ca9b0-bd31-4002-86d0-56f85006c99c",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "3e3bd68f-b0be-4c88-80a0-2f90668ba677",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "706ddb6d-50df-4198-b515-4b2c59b1d1da",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "fcdc6b99-a6d3-4d13-8b53-d54dbc7b5481",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c07c582e-78be-4e31-b781-29d4fbb2fdc5",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "626eb580-a3e8-4b00-a5ac-ac8988e1d4d7",
+      "restaurant_id": "10653e0b-3c76-4a6e-9905-4bd4a269ff25",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "471410a8-b969-4600-aaa0-1088b9b3be7d",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b9a9cc60-2c87-487e-94b0-94265491d10f",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0791d9df-ef72-45c4-9e13-8d7fc19c9b3a",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c6e9b0dd-ea0d-4808-ad60-072e8c87d79c",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "2ad84782-61e7-40a5-a999-344065a77b25",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c7ce6d80-b45a-49d8-8ce9-f74c13eaac34",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f603ad41-219b-4004-b9a0-41f1048caa9b",
+      "restaurant_id": "362c5300-2998-450c-9080-d73cb9bb9722",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "a35e0735-bafd-4f0d-affc-689022f302eb",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "99d81df5-f1a9-4cb4-9d9d-3a08e300c6f3",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "34a3787b-7970-4a5f-9b5f-06f9f02a1248",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b3fe43e6-7617-4809-b76a-42a955426eae",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "da464a7c-d5bb-4347-b1bf-ec0efd035e73",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b8108c67-28d2-4b64-b917-c7ae9525b4d9",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "7db08ad9-2ede-475d-b7e7-a42ae5796366",
+      "restaurant_id": "b9883a85-8685-4a7b-9bf9-b6b252b16622",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "25b6bba6-74ec-490a-bad3-4eee8d4c4ef9",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "d6f803e2-5df2-4e91-91a6-954e2353eb8c",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "127d2660-40df-448f-892e-e8d45a710138",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "a6cc0223-5e98-4ace-acf0-4531403a1fb7",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5b543c82-db12-4c4a-9c5a-80b8ce39997d",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6e72f950-5927-4edd-979e-8a95ce735428",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "9e5ee93c-d227-412c-8bfe-c03a14cd2bc3",
+      "restaurant_id": "8aabb520-31af-4d51-b46f-b3bd747de13b",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "baffa53a-cde5-410d-badc-dd646fbd6bca",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "83a6e87c-23fb-444f-ba62-4cf64f126d38",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "582df2de-a177-40d1-ade3-5344334e52d1",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b64b7424-268f-4395-b8f7-5dfa896aad67",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "d8b8162d-0ea2-4ee1-aaac-7a0acfe70ce7",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "01279f6d-1ad5-4997-b6da-523a31845e17",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5fe5a363-9e5a-4c45-b990-f88873422751",
+      "restaurant_id": "350e72b6-7588-4e68-882c-af1f53636fdf",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6b364c2e-4cb5-41af-a551-4cbf15a67daa",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b1ccb567-c02d-4cdf-b9e6-eb67e37c656d",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "83252e70-ce89-49a4-b911-6029f989aafb",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "2f8ce018-1492-4bed-852e-de90e6aa9a5b",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "77168eaf-3736-4784-8df7-1af59bc9ced3",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f6337da8-f452-47b3-ac37-f88efbd98228",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "75d4d38a-0b6f-48ca-bda0-1afe244076f2",
+      "restaurant_id": "ef232665-00e7-46b3-bd2e-52e55a0d326d",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6264e7e2-9740-44f0-b0ec-3f7710f42e04",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "7916250b-5755-44b5-9b9c-c228f9345feb",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "6e7f1ad2-5bfd-4290-be42-64fbf7624001",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "36eec483-f8d5-46fd-b681-0e239d06b927",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "1d58956d-aee2-4e80-9d1b-ed6b06b4ad76",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "0d04a096-ef59-45c8-a2ff-2117f8dceed7",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "32398ca9-6d77-4b43-96d2-b9ed56cba20d",
+      "restaurant_id": "12509e84-aba5-4eb8-bccb-4399377f6eed",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c3046826-0378-44ac-9fd1-68fb28d6e855",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "3834adbd-1363-45cb-8899-9bc3856c92a6",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "88c35d37-8bb1-40c1-873c-9a386ff21d35",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "ef528284-b581-48ff-b163-5095cc65d637",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "e1d1f404-80fd-4d5b-a1c0-4c4de8257883",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "b0473faa-7c82-4dd4-920b-05c4375c633d",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "67eb4fc3-7022-4bc5-a467-fd5f21afd07a",
+      "restaurant_id": "f4200895-02bb-4892-8352-ffe4dd1d98df",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5634b627-b82d-446e-ad31-027c0cc0288a",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "888f0722-d96a-4267-8e92-946e436702a4",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "65c88fd1-6e51-4133-b8b5-3a327c3a3478",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "8c68353b-ff70-4ba2-91d7-5c3ccd191922",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "c032e5e5-8dc9-4532-8741-44c8c3a918d2",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "2e5d4fc0-d34e-4a51-94bb-66fe0940de70",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "4391aba3-7064-4e1f-9c98-2de517977307",
+      "restaurant_id": "5dccc5db-e476-44e3-9853-9978631fa8b1",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "03e21447-3cf2-4508-88e8-f62b971b4523",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 0,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "3ca79792-02e5-4f3e-bc3a-0d9e01e6ffeb",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 1,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "f785502a-79fe-4ff8-bb2a-29a68f1bea0e",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 2,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5861b36b-3008-4d6c-a688-71e339c67963",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 3,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "d4ae2e59-9ce9-46a7-b4f6-7661289a51bb",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 4,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "5e8f743d-db1b-4c57-92b6-a440c3401bb1",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 5,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    },
+    {
+      "id": "16295ac3-5a0d-4c3d-9aed-abf601385181",
+      "restaurant_id": "633d72c0-1577-4d98-a6b0-ade9c254175a",
+      "day_of_week": 6,
+      "open_time": "10:00:00",
+      "close_time": "22:00:00",
+      "is_closed": false
+    }
+  ],
+  "restaurant_photos": [],
+  "reviews": [],
+  "review_photos": [],
+  "review_votes": [],
+  "review_responses": [],
+  "favorites": [],
+  "restaurant_claims": [],
+  "notifications": [],
+  "reports": [],
+  "restaurant_offers": []
+}
