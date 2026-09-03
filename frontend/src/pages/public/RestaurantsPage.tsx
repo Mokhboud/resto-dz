@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
-import { useTranslation } from 'react-i18next';
-
+	
 export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t } = useTranslation();
-
+  
   const search = searchParams.get('search') || '';
   const wilayaId = searchParams.get('wilaya_id') || '';
   const categoryId = searchParams.get('category_id') || '';
