@@ -38,19 +38,27 @@ export default function HomePage() {
   };
 
   const handleLocationSearch = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        () => {
-          alert('Unable to get your location');
-        }
-      );
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        setUserLocation({ lat, lng });
+        navigate(`/restaurants?nearby=true&lat=${lat}&lng=${lng}`);
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+        // Fallback to Alger on any error
+        alert('Using Alger as default location. You can search by wilaya instead.');
+        setUserLocation({ lat: 36.7538, lng: 3.0588 });
+        navigate(`/restaurants?nearby=true&lat=36.7538&lng=3.0588`);
+      },
+      { timeout: 10000, enableHighAccuracy: false }
+    );
   };
 
   const categories = categoriesData?.data || [];
@@ -145,7 +153,7 @@ export default function HomePage() {
                       ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
                     </span>
                     <span className="text-sm text-gray-500">
-                      ({restaurant.review_count} {t('restaurant.reviews').replace('💬 ', '')})
+                      ({restaurant.review_count})
                     </span>
                   </div>
                 </div>
