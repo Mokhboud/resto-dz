@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+// Use environment variable or default to Render backend
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://resto-dz-backend.onrender.com/api';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
