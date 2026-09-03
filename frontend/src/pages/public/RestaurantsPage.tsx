@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
-	
+import RestaurantMap from '../../components/map/RestaurantMap';
+
 export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   
@@ -13,10 +14,10 @@ export default function RestaurantsPage() {
   const nearbyMode = searchParams.get('nearby') === 'true';
   const nearbyLat = parseFloat(searchParams.get('lat') || '0');
   const nearbyLng = parseFloat(searchParams.get('lng') || '0');
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   const [searchInput, setSearchInput] = useState(search);
 
-  // Sync searchInput when URL search changes
   useEffect(() => {
     setSearchInput(search);
   }, [search]);
@@ -85,9 +86,39 @@ export default function RestaurantsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">
-        {nearbyMode ? '📍 Near You' : '🍽️ Restaurants'}
-      </h1>
+      {/* Header with Map/List toggle */}
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">
+          {nearbyMode ? '📍 Near You' : '🍽️ Restaurants'}
+        </h1>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setViewMode('list')}
+            className={`px-4 py-2 rounded-md text-sm ${viewMode === 'list' ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            📋 List
+          </button>
+          <button
+            onClick={() => setViewMode('map')}
+            className={`px-4 py-2 rounded-md text-sm ${viewMode === 'map' ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            🗺️ Map
+          </button>
+        </div>
+      </div>
+
+      {/* Map view */}
+      {viewMode === 'map' && (
+        <div className="mb-8">
+          <RestaurantMap
+            restaurants={restaurants}
+            centerLat={nearbyMode ? nearbyLat : 36.7538}
+            centerLng={nearbyMode ? nearbyLng : 3.0588}
+            zoom={nearbyMode ? 13 : 6}
+            height="500px"
+          />
+        </div>
+      )}
 
       {!nearbyMode && (
         <div className="bg-white border rounded-lg p-4 mb-8">
@@ -182,70 +213,75 @@ export default function RestaurantsPage() {
         </div>
       )}
 
-      {loading && (
-        <div className="text-center py-12">
-          <div className="text-gray-500">Loading restaurants...</div>
-        </div>
-      )}
-
-      {!loading && restaurants.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-500">No restaurants found</div>
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {restaurants.map((restaurant: any) => (
-          <Link
-            key={restaurant.id}
-            to={`/restaurants/${restaurant.id}`}
-            className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition"
-          >
-            <div className="p-6">
-              <div className="flex items-start justify-between">
-                <h2 className="font-bold text-lg">{restaurant.name}</h2>
-                {restaurant.verified && <span className="text-blue-500 text-sm">✓</span>}
-              </div>
-              <p className="text-sm text-gray-500 mt-1">
-                {restaurant.wilaya_name} • {restaurant.address}
-              </p>
-              {restaurant.distance_km && (
-                <p className="text-sm text-green-600 mt-1">
-                  📏 {parseFloat(restaurant.distance_km).toFixed(1)} km away
-                </p>
-              )}
-              <div className="flex items-center gap-3 mt-3">
-                <span className="text-yellow-500 font-bold">
-                  ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
-                </span>
-                <span className="text-sm text-gray-500">({restaurant.review_count})</span>
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                  {restaurant.price_level === 1 ? '$' : restaurant.price_level === 2 ? '$$' : restaurant.price_level === 3 ? '$$$' : '$$$$'}
-                </span>
-              </div>
+      {/* List view only */}
+      {viewMode === 'list' && (
+        <>
+          {loading && (
+            <div className="text-center py-12">
+              <div className="text-gray-500">Loading restaurants...</div>
             </div>
-          </Link>
-        ))}
-      </div>
+          )}
 
-      {!nearbyMode && pagination && pagination.totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-8">
-          <button
-            onClick={() => changePage(page - 1)}
-            disabled={page <= 1}
-            className="px-4 py-2 border rounded-md disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="px-4 py-2">Page {page} of {pagination.totalPages}</span>
-          <button
-            onClick={() => changePage(page + 1)}
-            disabled={page >= pagination.totalPages}
-            className="px-4 py-2 border rounded-md disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+          {!loading && restaurants.length === 0 && (
+            <div className="text-center py-12">
+              <div className="text-gray-500">No restaurants found</div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {restaurants.map((restaurant: any) => (
+              <Link
+                key={restaurant.id}
+                to={`/restaurants/${restaurant.id}`}
+                className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition"
+              >
+                <div className="p-6">
+                  <div className="flex items-start justify-between">
+                    <h2 className="font-bold text-lg">{restaurant.name}</h2>
+                    {restaurant.verified && <span className="text-blue-500 text-sm">✓</span>}
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {restaurant.wilaya_name} • {restaurant.address}
+                  </p>
+                  {restaurant.distance_km && (
+                    <p className="text-sm text-green-600 mt-1">
+                      📏 {parseFloat(restaurant.distance_km).toFixed(1)} km away
+                    </p>
+                  )}
+                  <div className="flex items-center gap-3 mt-3">
+                    <span className="text-yellow-500 font-bold">
+                      ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
+                    </span>
+                    <span className="text-sm text-gray-500">({restaurant.review_count})</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                      {restaurant.price_level === 1 ? '$' : restaurant.price_level === 2 ? '$$' : restaurant.price_level === 3 ? '$$$' : '$$$$'}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {!nearbyMode && pagination && pagination.totalPages > 1 && (
+            <div className="flex justify-center gap-2 mt-8">
+              <button
+                onClick={() => changePage(page - 1)}
+                disabled={page <= 1}
+                className="px-4 py-2 border rounded-md disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <span className="px-4 py-2">Page {page} of {pagination.totalPages}</span>
+              <button
+                onClick={() => changePage(page + 1)}
+                disabled={page >= pagination.totalPages}
+                className="px-4 py-2 border rounded-md disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
