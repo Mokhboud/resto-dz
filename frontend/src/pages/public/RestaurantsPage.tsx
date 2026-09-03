@@ -2,12 +2,19 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
+import { useTranslation } from 'react-i18next';
 
 export default function RestaurantsPage() {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [wilayaId, setWilayaId] = useState(searchParams.get('wilaya_id') || '');
   const [page, setPage] = useState(1);
+
+  // Nearby mode
+  const nearbyMode = searchParams.get('nearby') === 'true';
+  const nearbyLat = parseFloat(searchParams.get('lat') || '0');
+  const nearbyLng = parseFloat(searchParams.get('lng') || '0');
 
   const { data: wilayasData } = useQuery({
     queryKey: ['wilayas'],
@@ -19,6 +26,14 @@ export default function RestaurantsPage() {
     queryFn: restaurantsApi.getCategories,
   });
 
+  // Query for nearby restaurants
+  const { data: nearbyData, isLoading: nearbyLoading } = useQuery({
+    queryKey: ['nearby-list', nearbyLat, nearbyLng],
+    queryFn: () => restaurantsApi.getNearbyRestaurants(nearbyLat, nearbyLng, 20),
+    enabled: nearbyMode && nearbyLat > 0 && nearbyLng !== 0,
+  });
+
+  // Query for regular restaurants list
   const { data, isLoading, isError } = useQuery({
     queryKey: ['restaurants-list', search, wilayaId, page],
     queryFn: () =>
@@ -28,82 +43,88 @@ export default function RestaurantsPage() {
         page,
         limit: 12,
       }),
+    enabled: !nearbyMode,
   });
 
-  const restaurants = data?.data || [];
+  const restaurants = nearbyMode 
+    ? (nearbyData?.data || [])
+    : (data?.data || []);
   const pagination = data?.pagination;
   const wilayas = wilayasData?.data || [];
   const categories = categoriesData?.data || [];
+  const loading = nearbyMode ? nearbyLoading : isLoading;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">🍽️ Restaurants</h1>
+      <h1 className="text-3xl font-bold mb-2">
+        {nearbyMode ? '📍 Near You' : '🍽️ Restaurants'}
+      </h1>
+      {nearbyMode && (
+        <p className="text-gray-500 mb-8">
+          Showing restaurants within 20km of your location
+        </p>
+      )}
 
-      {/* Filters */}
-      <div className="bg-white border rounded-lg p-4 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Search</label>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search..."
-              className="w-full px-3 py-2 border rounded-md"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Wilaya</label>
-            <select
-              value={wilayaId}
-              onChange={(e) => setWilayaId(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md"
-            >
-              <option value="">All Wilayas</option>
-              {wilayas.map((w: any) => (
-                <option key={w.id} value={w.id}>
-                  {w.name_en}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Category</label>
-            <select
-              onChange={(e) => {
-                if (e.target.value) {
-                  setSearch('');
-                  window.location.href = `/restaurants?category_id=${e.target.value}`;
-                }
-              }}
-              className="w-full px-3 py-2 border rounded-md"
-              defaultValue=""
-            >
-              <option value="">All Categories</option>
-              {categories.map((c: any) => (
-                <option key={c.id} value={c.id}>
-                  {c.icon} {c.name_en}
-                </option>
-              ))}
-            </select>
+      {/* Filters (only show in regular mode) */}
+      {!nearbyMode && (
+        <div className="bg-white border rounded-lg p-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Search</label>
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search..."
+                className="w-full px-3 py-2 border rounded-md"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Wilaya</label>
+              <select
+                value={wilayaId}
+                onChange={(e) => setWilayaId(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md"
+              >
+                <option value="">All Wilayas</option>
+                {wilayas.map((w: any) => (
+                  <option key={w.id} value={w.id}>
+                    {w.name_en}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Category</label>
+              <select
+                onChange={(e) => {
+                  if (e.target.value) {
+                    window.location.href = `/restaurants?category_id=${e.target.value}`;
+                  }
+                }}
+                className="w-full px-3 py-2 border rounded-md"
+                defaultValue=""
+              >
+                <option value="">All Categories</option>
+                {categories.map((c: any) => (
+                  <option key={c.id} value={c.id}>
+                    {c.icon} {c.name_en}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Results */}
-      {isLoading && (
+      {loading && (
         <div className="text-center py-12">
           <div className="text-gray-500">Loading restaurants...</div>
         </div>
       )}
 
-      {isError && (
-        <div className="text-center py-12">
-          <div className="text-red-500">Error loading restaurants</div>
-        </div>
-      )}
-
-      {!isLoading && !isError && restaurants.length === 0 && (
+      {!loading && restaurants.length === 0 && (
         <div className="text-center py-12">
           <div className="text-gray-500">No restaurants found</div>
         </div>
@@ -126,6 +147,11 @@ export default function RestaurantsPage() {
               <p className="text-sm text-gray-500 mt-1">
                 {restaurant.wilaya_name} • {restaurant.address}
               </p>
+              {restaurant.distance_km && (
+                <p className="text-sm text-green-600 mt-1">
+                  📏 {parseFloat(restaurant.distance_km).toFixed(1)} km away
+                </p>
+              )}
               <div className="flex items-center gap-3 mt-3">
                 <span className="text-yellow-500 font-bold">
                   ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
@@ -142,8 +168,8 @@ export default function RestaurantsPage() {
         ))}
       </div>
 
-      {/* Pagination */}
-      {pagination && pagination.totalPages > 1 && (
+      {/* Pagination (regular mode only) */}
+      {!nearbyMode && pagination && pagination.totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-8">
           <button
             onClick={() => setPage(page - 1)}
