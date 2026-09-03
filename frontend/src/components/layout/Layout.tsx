@@ -1,10 +1,13 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
 import NotificationBell from '../notifications/NotificationBell';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export default function Layout() {
   const { isAuthenticated, user, logout } = useAuthStore();
   const navigate = useNavigate();
+const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
