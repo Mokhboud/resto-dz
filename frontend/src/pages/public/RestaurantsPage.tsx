@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
@@ -8,19 +8,20 @@ export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
 
-  // All filter state comes from URL
   const search = searchParams.get('search') || '';
   const wilayaId = searchParams.get('wilaya_id') || '';
   const categoryId = searchParams.get('category_id') || '';
   const page = Number(searchParams.get('page') || '1');
-
-  // Separate state for search input (only for the input field)
-  const [searchInput, setSearchInput] = useState(search);
-
-  // Nearby mode
   const nearbyMode = searchParams.get('nearby') === 'true';
   const nearbyLat = parseFloat(searchParams.get('lat') || '0');
   const nearbyLng = parseFloat(searchParams.get('lng') || '0');
+
+  const [searchInput, setSearchInput] = useState(search);
+
+  // Sync searchInput when URL search changes
+  useEffect(() => {
+    setSearchInput(search);
+  }, [search]);
 
   const { data: wilayasData } = useQuery({
     queryKey: ['wilayas'],
@@ -32,14 +33,12 @@ export default function RestaurantsPage() {
     queryFn: restaurantsApi.getCategories,
   });
 
-  // Query for nearby restaurants
   const { data: nearbyData, isLoading: nearbyLoading } = useQuery({
     queryKey: ['nearby-list', nearbyLat, nearbyLng],
     queryFn: () => restaurantsApi.getNearbyRestaurants(nearbyLat, nearbyLng, 20),
     enabled: nearbyMode && nearbyLat > 0 && nearbyLng !== 0,
   });
 
-  // Query for regular restaurants list
   const { data, isLoading } = useQuery({
     queryKey: ['restaurants-list', search, wilayaId, categoryId, page],
     queryFn: () =>
@@ -61,7 +60,6 @@ export default function RestaurantsPage() {
   const categories = categoriesData?.data || [];
   const loading = nearbyMode ? nearbyLoading : isLoading;
 
-  // Single source of truth: URL params
   const updateFilters = (
     newSearch?: string,
     newWilayaId?: string,
@@ -73,28 +71,18 @@ export default function RestaurantsPage() {
     const finalWilayaId = newWilayaId !== undefined ? newWilayaId : wilayaId;
     const finalCategoryId = newCategoryId !== undefined ? newCategoryId : categoryId;
 
-    if (finalSearch.trim()) {
-      params.set('search', finalSearch.trim());
-    }
-
-    if (finalWilayaId) {
-      params.set('wilaya_id', finalWilayaId);
-    }
-
-    if (finalCategoryId) {
-      params.set('category_id', finalCategoryId);
-    }
-
-    // Reset to page 1 on filter change
+    if (finalSearch.trim()) params.set('search', finalSearch.trim());
+    if (finalWilayaId) params.set('wilaya_id', finalWilayaId);
+    if (finalCategoryId) params.set('category_id', finalCategoryId);
     params.set('page', '1');
 
-    setSearchParams(params);
+    setSearchParams(params, { replace: true });
   };
 
   const changePage = (newPage: number) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', String(newPage));
-    setSearchParams(params);
+    setSearchParams(params, { replace: true });
   };
 
   return (
@@ -102,17 +90,10 @@ export default function RestaurantsPage() {
       <h1 className="text-3xl font-bold mb-2">
         {nearbyMode ? '📍 Near You' : '🍽️ Restaurants'}
       </h1>
-      {nearbyMode && (
-        <p className="text-gray-500 mb-8">
-          Showing restaurants within 20km of your location
-        </p>
-      )}
 
-      {/* Filters */}
       {!nearbyMode && (
         <div className="bg-white border rounded-lg p-4 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Search */}
             <div>
               <label className="block text-sm font-medium mb-1">Search</label>
               <div className="flex gap-2">
@@ -138,13 +119,12 @@ export default function RestaurantsPage() {
               </div>
             </div>
 
-            {/* Wilaya */}
             <div>
               <label className="block text-sm font-medium mb-1">Wilaya</label>
               <select
                 value={wilayaId}
                 onChange={(e) => updateFilters(undefined, e.target.value, undefined)}
-                className="w-full px-3 py-2 border rounded-md"
+                className="w-full px-3 py-2 border rounded-md bg-white"
               >
                 <option value="">All Wilayas</option>
                 {wilayas.map((w: any) => (
@@ -155,13 +135,12 @@ export default function RestaurantsPage() {
               </select>
             </div>
 
-            {/* Category */}
             <div>
               <label className="block text-sm font-medium mb-1">Category</label>
               <select
                 value={categoryId}
                 onChange={(e) => updateFilters(undefined, undefined, e.target.value)}
-                className="w-full px-3 py-2 border rounded-md"
+                className="w-full px-3 py-2 border rounded-md bg-white"
               >
                 <option value="">All Categories</option>
                 {categories.map((c: any) => (
@@ -173,50 +152,29 @@ export default function RestaurantsPage() {
             </div>
           </div>
 
-          {/* Active filters */}
           {(search || wilayaId || categoryId) && (
             <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t">
+              <span className="text-xs text-gray-500">Active filters:</span>
               {search && (
                 <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                  🔍 {search}
-                  <button
-                    onClick={() => {
-                      setSearchInput('');
-                      updateFilters('', undefined, undefined);
-                    }}
-                    className="font-bold hover:text-red-500"
-                  >
-                    ×
-                  </button>
+                  {search}
+                  <button onClick={() => { setSearchInput(''); updateFilters('', undefined, undefined); }} className="font-bold hover:text-red-500">×</button>
                 </span>
               )}
               {wilayaId && (
                 <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                  📍 {wilayas.find((w: any) => String(w.id) === String(wilayaId))?.name_en}
-                  <button
-                    onClick={() => updateFilters(undefined, '', undefined)}
-                    className="font-bold hover:text-red-500"
-                  >
-                    ×
-                  </button>
+                  {wilayas.find((w: any) => String(w.id) === wilayaId)?.name_en}
+                  <button onClick={() => updateFilters(undefined, '', undefined)} className="font-bold hover:text-red-500">×</button>
                 </span>
               )}
               {categoryId && (
                 <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                  🏷️ {categories.find((c: any) => String(c.id) === String(categoryId))?.name_en}
-                  <button
-                    onClick={() => updateFilters(undefined, undefined, '')}
-                    className="font-bold hover:text-red-500"
-                  >
-                    ×
-                  </button>
+                  {categories.find((c: any) => String(c.id) === categoryId)?.name_en}
+                  <button onClick={() => updateFilters(undefined, undefined, '')} className="font-bold hover:text-red-500">×</button>
                 </span>
               )}
               <button
-                onClick={() => {
-                  setSearchInput('');
-                  setSearchParams({});
-                }}
+                onClick={() => { setSearchInput(''); setSearchParams({}, { replace: true }); }}
                 className="text-xs text-gray-500 hover:text-red-500 ml-2"
               >
                 Clear all
@@ -226,7 +184,6 @@ export default function RestaurantsPage() {
         </div>
       )}
 
-      {/* Results */}
       {loading && (
         <div className="text-center py-12">
           <div className="text-gray-500">Loading restaurants...</div>
@@ -249,9 +206,7 @@ export default function RestaurantsPage() {
             <div className="p-6">
               <div className="flex items-start justify-between">
                 <h2 className="font-bold text-lg">{restaurant.name}</h2>
-                {restaurant.verified && (
-                  <span className="text-blue-500 text-sm">✓</span>
-                )}
+                {restaurant.verified && <span className="text-blue-500 text-sm">✓</span>}
               </div>
               <p className="text-sm text-gray-500 mt-1">
                 {restaurant.wilaya_name} • {restaurant.address}
@@ -265,9 +220,7 @@ export default function RestaurantsPage() {
                 <span className="text-yellow-500 font-bold">
                   ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
                 </span>
-                <span className="text-sm text-gray-500">
-                  ({restaurant.review_count} reviews)
-                </span>
+                <span className="text-sm text-gray-500">({restaurant.review_count})</span>
                 <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
                   {restaurant.price_level === 1 ? '$' : restaurant.price_level === 2 ? '$$' : restaurant.price_level === 3 ? '$$$' : '$$$$'}
                 </span>
@@ -277,7 +230,6 @@ export default function RestaurantsPage() {
         ))}
       </div>
 
-      {/* Pagination */}
       {!nearbyMode && pagination && pagination.totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-8">
           <button
@@ -287,9 +239,7 @@ export default function RestaurantsPage() {
           >
             Previous
           </button>
-          <span className="px-4 py-2">
-            Page {page} of {pagination.totalPages}
-          </span>
+          <span className="px-4 py-2">Page {page} of {pagination.totalPages}</span>
           <button
             onClick={() => changePage(page + 1)}
             disabled={page >= pagination.totalPages}
