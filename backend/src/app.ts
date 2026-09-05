@@ -7,6 +7,7 @@ import { errorHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/requestLogger';
 import { sanitizeInput } from './middleware/sanitize';
 import { generalRateLimiter } from './middleware/rateLimiter';
+import { visitTracker } from './middleware/visitTracker';
 import routes from './routes';
 import { logger } from './config/logger';
 import { setupSwagger } from './config/swagger';
@@ -30,10 +31,8 @@ export const createApp = () => {
   app.use(
     cors({
       origin: (origin, callback) => {
-        // Allow requests with no origin (mobile apps, curl)
         if (!origin) return callback(null, true);
         
-        // Allow Render frontend
         const allowedOrigins = [
           'https://resto-dz-frontend.onrender.com',
           'http://localhost:5173',
@@ -69,6 +68,9 @@ export const createApp = () => {
 
   // Logging
   app.use(requestLogger);
+
+  // Visit tracking
+  app.use(visitTracker);
 
   // Routes
   app.use('/api', routes);
