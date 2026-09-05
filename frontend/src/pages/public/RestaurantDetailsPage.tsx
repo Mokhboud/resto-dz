@@ -114,6 +114,28 @@ export default function RestaurantDetailsPage() {
           </div>
         )}
 
+        {/* Google Maps Buttons */}
+        {restaurant.latitude && restaurant.longitude && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            <a
+              href={`https://www.google.com/maps?q=${restaurant.latitude},${restaurant.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition"
+            >
+              🗺️ View on Google Maps
+            </a>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.latitude},${restaurant.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 transition"
+            >
+              🚗 Get Directions
+            </a>
+          </div>
+        )}
+
         <div className="flex flex-wrap gap-2 mt-4">
           {restaurant.categories?.map((cat: any) => (
             <span key={cat.id} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
