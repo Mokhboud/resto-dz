@@ -94,9 +94,10 @@ export default function RestaurantDetailsPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold">{restaurant.name}</h1>
-            <p className="text-gray-500 mt-1">
-              {restaurant.wilaya_name} • {restaurant.address}
-            </p>
+		<p className="text-gray-500 mt-1">
+ 		 {restaurant.wilaya_name}
+ 		 {restaurant.address ? ` • ${restaurant.address}` : ' • 📍 Location available on map'}
+		</p>
           </div>
           <div className="text-right">
             <div className="text-3xl font-bold text-yellow-500">
@@ -135,6 +136,17 @@ export default function RestaurantDetailsPage() {
             </a>
           </div>
         )}
+
+        {/* Description */}
+        <div className="mt-4">
+          {restaurant.description ? (
+            <p className="text-gray-700">{restaurant.description}</p>
+          ) : (
+            <p className="text-gray-400 italic">
+              No description available yet. The owner can add one after claiming this restaurant.
+            </p>
+          )}
+        </div>
 
         <div className="flex flex-wrap gap-2 mt-4">
           {restaurant.categories?.map((cat: any) => (
