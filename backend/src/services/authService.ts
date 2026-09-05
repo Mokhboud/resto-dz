@@ -114,7 +114,7 @@ export class AuthService {
     };
   }
 
-  /**
+    /**
    * Login user
    */
   async login(email: string, password: string) {
@@ -140,6 +140,15 @@ export class AuthService {
 
     // Update last_login
     await this.userRepository.updateLastLogin(user.id);
+
+    // Log login history
+    await AppDataSource.query(
+      `INSERT INTO login_history (user_id, ip_address, user_agent)
+       VALUES ($1, $2, $3)`,
+      [user.id, 'tracked', 'login']
+    ).catch(() => {
+      // Silent fail — tracking should never break login
+    });
 
     // Get user roles
     const roles = await this.userRepository.getUserRoles(user.id);
@@ -170,6 +179,7 @@ export class AuthService {
       },
     };
   }
+
 
   /**
    * Get current user profile
