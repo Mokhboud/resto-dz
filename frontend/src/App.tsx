@@ -13,6 +13,7 @@ import ProfilePage from './pages/user/ProfilePage';
 import FavoritesPage from './pages/user/FavoritesPage';
 import OwnerDashboardPage from './pages/owner/OwnerDashboardPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import AdminAnalyticsPage from './pages/admin/AdminAnalyticsPage';
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="favorites" element={<FavoritesPage />} />
             <Route path="owner" element={<OwnerDashboardPage />} />
             <Route path="admin" element={<AdminDashboardPage />} />
+            <Route path="admin/analytics" element={<AdminAnalyticsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

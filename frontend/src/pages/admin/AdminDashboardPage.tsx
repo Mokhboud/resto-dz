@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import { apiClient } from '../../api/client';
 import { useAuthStore } from '../../stores/authStore';
 
@@ -31,7 +32,15 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">🛡️ Admin Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">🛡️ Admin Dashboard</h1>
+        <Link
+          to="/admin/analytics"
+          className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm"
+        >
+          📊 View Analytics
+        </Link>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         <div className="bg-white border rounded-lg p-4 text-center">
