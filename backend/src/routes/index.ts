@@ -19,6 +19,7 @@ import { PhotoController } from '../controllers/photoController';
 import { uploadImage } from '../middleware/upload';
 import { NotificationController } from '../controllers/notificationController';
 import { EnhancedImportController } from '../controllers/enhancedImportController';
+import { VisitController } from '../controllers/visitController';
 
 const router = Router();
 
@@ -41,6 +42,7 @@ const importController = new ImportController();
 const photoController = new PhotoController();
 const notificationController = new NotificationController();
 const enhancedImportController = new EnhancedImportController();
+const visitController = new VisitController();
 
 
 // Health check
@@ -137,6 +139,12 @@ router.put('/admin/restaurants/:id/verify', authenticate, authorize('ADMIN', 'SU
 router.get('/admin/reviews', authenticate, authorize('ADMIN', 'SUPER_ADMIN', 'MODERATOR'), adminController.getReviews.bind(adminController));
 router.put('/admin/reviews/:id/status', authenticate, authorize('ADMIN', 'SUPER_ADMIN', 'MODERATOR'), adminController.updateReviewStatus.bind(adminController));
 router.delete('/admin/reviews/:id', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), adminController.deleteReview.bind(adminController));
+
+// Admin visit tracking routes
+router.get('/admin/stats', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), visitController.getStats.bind(visitController));
+router.get('/admin/visits', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), visitController.getVisits.bind(visitController));
+router.get('/admin/login-history', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), visitController.getLoginHistory.bind(visitController));
+
 
 // Email verification & password reset
 router.post('/auth/verify-email', authController.verifyEmail.bind(authController));
