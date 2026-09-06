@@ -20,6 +20,7 @@ import { uploadImage } from '../middleware/upload';
 import { NotificationController } from '../controllers/notificationController';
 import { EnhancedImportController } from '../controllers/enhancedImportController';
 import { VisitController } from '../controllers/visitController';
+import { FeedbackController } from '../controllers/feedbackController';
 
 const router = Router();
 
@@ -43,6 +44,7 @@ const photoController = new PhotoController();
 const notificationController = new NotificationController();
 const enhancedImportController = new EnhancedImportController();
 const visitController = new VisitController();
+const feedbackController = new FeedbackController();
 
 
 // Health check
@@ -109,6 +111,10 @@ router.delete('/review-responses/:id', authenticate, reviewResponseController.de
 router.get('/notifications', authenticate, notificationController.getNotifications.bind(notificationController));
 router.put('/notifications/:id/read', authenticate, notificationController.markAsRead.bind(notificationController));
 router.put('/notifications/read-all', authenticate, notificationController.markAllAsRead.bind(notificationController));
+
+// Feedback routes
+router.post('/feedback', feedbackController.submitFeedback.bind(feedbackController));
+router.get('/admin/feedback', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), feedbackController.getFeedback.bind(feedbackController));
 
 // Enhanced import routes
 router.get('/admin/import/restaurants/search', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), enhancedImportController.searchRestaurants.bind(enhancedImportController));
