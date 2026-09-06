@@ -5,7 +5,7 @@ import apiClient from '../../api/client';
 export default function AdminAnalyticsPage() {
   const [activeTab, setActiveTab] = useState<'stats' | 'visits' | 'logins' | 'users'>('stats');
 
-  const { data: statsData, isLoading: statsLoading } = useQuery({
+  const { data: statsData } = useQuery({
     queryKey: ['admin-stats'],
     queryFn: async () => {
       const response = await apiClient.get('/admin/stats');
