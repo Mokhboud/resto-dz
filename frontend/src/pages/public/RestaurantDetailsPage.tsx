@@ -180,17 +180,23 @@ export default function RestaurantDetailsPage() {
       </div>
 
       {/* Claim Restaurant Section */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-300 rounded-lg p-6 mb-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-lg font-bold text-yellow-800">🏪 Are you the owner of this restaurant?</h2>
+            <h2 className="text-lg font-bold text-yellow-800">🏪 Are you the owner of {restaurant.name}?</h2>
             <p className="text-sm text-yellow-700 mt-1">
-              Claim this restaurant to manage your profile, update information, respond to reviews, and more.
+              Claim your restaurant for free to:
             </p>
+            <ul className="text-sm text-yellow-700 mt-2 space-y-1">
+              <li>✅ Update your information</li>
+              <li>✅ Add photos and menu</li>
+              <li>✅ Respond to reviews</li>
+              <li>✅ Get more customers</li>
+            </ul>
           </div>
           <button
             onClick={() => setShowClaimForm(!showClaimForm)}
-            className="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 whitespace-nowrap"
+            className="px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 whitespace-nowrap font-semibold shadow-md"
           >
             Claim This Restaurant
           </button>
@@ -209,13 +215,14 @@ export default function RestaurantDetailsPage() {
                 type="text"
                 value={claimPhone}
                 onChange={(e) => setClaimPhone(e.target.value)}
-                placeholder="Your phone number"
+                placeholder="Your phone number *"
+                required
                 className="w-full px-3 py-2 border rounded-md text-sm"
               />
               <textarea
                 value={claimNotes}
                 onChange={(e) => setClaimNotes(e.target.value)}
-                placeholder="Additional notes (optional)"
+                placeholder="Tell us about your relationship to this restaurant (owner, manager, etc.)"
                 rows={3}
                 className="w-full px-3 py-2 border rounded-md text-sm"
               />
@@ -225,10 +232,14 @@ export default function RestaurantDetailsPage() {
                     alert('Please login or register to claim this restaurant.');
                     return;
                   }
+                  if (!claimPhone) {
+                    alert('Please enter your phone number.');
+                    return;
+                  }
                   claimMutation.mutate({ phone: claimPhone, notes: claimNotes });
                 }}
                 disabled={claimMutation.isPending}
-                className="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:opacity-50 text-sm"
+                className="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:opacity-50 text-sm font-semibold"
               >
                 {claimMutation.isPending ? 'Submitting...' : 'Submit Claim Request'}
               </button>
