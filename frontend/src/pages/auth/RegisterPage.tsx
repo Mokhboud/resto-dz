@@ -32,11 +32,20 @@ export default function RegisterPage() {
   return (
     <div className="max-w-md mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8 text-center">Register</h1>
+      
       {error && (
-        <div className="bg-red-50 text-red-600 p-3 rounded-md mb-4">
+        <div className="bg-red-50 text-red-600 p-3 rounded-md mb-4 text-sm">
           {error}
+          {error === 'Password does not meet requirements' && (
+            <ul className="mt-2 list-disc list-inside text-xs">
+              <li>Min 8 characters</li>
+              <li>At least one letter</li>
+              <li>At least one number</li>
+            </ul>
+          )}
         </div>
       )}
+
       <form onSubmit={handleSubmit} className="bg-white border rounded-lg p-6 space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">First Name</label>
@@ -90,8 +99,12 @@ export default function RegisterPage() {
             onChange={handleChange}
             required
             minLength={8}
+            placeholder="Min 8 characters with letters & numbers"
             className="w-full px-3 py-2 border rounded-md"
           />
+          <p className="text-xs text-gray-500 mt-1">
+            Min 8 characters, at least one letter and one number
+          </p>
         </div>
         <button
           type="submit"
