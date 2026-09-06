@@ -2,6 +2,7 @@ import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
 import NotificationBell from '../notifications/NotificationBell';
 import LanguageSwitcher from './LanguageSwitcher';
+import FeedbackForm from '../feedback/FeedbackForm';
 import { useTranslation } from 'react-i18next';
 
 export default function Layout() {
@@ -84,7 +85,12 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="bg-white border-t mt-16">
+      {/* Feedback section */}
+      <div className="max-w-3xl mx-auto px-4 py-8 mb-8">
+        <FeedbackForm />
+      </div>
+
+      <footer className="bg-white border-t">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
           {t('footer.text')}
         </div>
