@@ -21,11 +21,13 @@ import { NotificationController } from '../controllers/notificationController';
 import { EnhancedImportController } from '../controllers/enhancedImportController';
 import { VisitController } from '../controllers/visitController';
 import { FeedbackController } from '../controllers/feedbackController';
+import { MenuController } from '../controllers/menuController';
 
 const router = Router();
 
 // Controllers
 const restaurantController = new RestaurantController();
+const menuController = new MenuController();
 const categoryController = new CategoryController();
 const cuisineController = new CuisineController();
 const wilayaController = new WilayaController();
@@ -62,6 +64,14 @@ router.post('/auth/register', authController.register.bind(authController));
 router.post('/auth/login', authController.login.bind(authController));
 router.post('/auth/logout', authController.logout.bind(authController));
 router.get('/auth/me', authenticate, authController.me.bind(authController));
+
+// Menu routes
+router.get('/restaurants/:id/menu', menuController.getMenu.bind(menuController));
+router.post('/restaurants/:id/menu/categories', authenticate, menuController.createCategory.bind(menuController));
+router.post('/restaurants/:id/menu/items', authenticate, menuController.createItem.bind(menuController));
+router.delete('/menu/categories/:id', authenticate, menuController.deleteCategory.bind(menuController));
+router.delete('/menu/items/:id', authenticate, menuController.deleteItem.bind(menuController));
+
 
 // User profile routes
 router.get('/users/profile', authenticate, userController.getProfile.bind(userController));
