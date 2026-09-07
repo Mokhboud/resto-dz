@@ -6,6 +6,7 @@ import { useAuthStore } from '../../stores/authStore';
 import PhotoGallery from '../../components/restaurants/PhotoGallery';
 import PhotoUpload from '../../components/restaurants/PhotoUpload';
 import { apiClient } from '../../api/client';
+import MenuDisplay from '../../components/menu/MenuDisplay';
 
 export default function RestaurantDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -94,10 +95,10 @@ export default function RestaurantDetailsPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold">{restaurant.name}</h1>
-		<p className="text-gray-500 mt-1">
- 		 {restaurant.wilaya_name}
- 		 {restaurant.address ? ` • ${restaurant.address}` : ' • 📍 Location available on map'}
-		</p>
+            <p className="text-gray-500 mt-1">
+              {restaurant.wilaya_name}
+              {restaurant.address ? ` • ${restaurant.address}` : ' • 📍 Location available on map'}
+            </p>
           </div>
           <div className="text-right">
             <div className="text-3xl font-bold text-yellow-500">
@@ -178,6 +179,9 @@ export default function RestaurantDetailsPage() {
           </button>
         </div>
       </div>
+
+      {/* Menu Section */}
+      <MenuDisplay restaurantId={restaurant.id} />
 
       {/* Claim Restaurant Section */}
       <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-300 rounded-lg p-6 mb-6">
