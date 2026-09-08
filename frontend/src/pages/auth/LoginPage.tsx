@@ -14,20 +14,23 @@ export default function LoginPage() {
     setError('');
     try {
       await login(email, password);
-      navigate('/');
+      // Force redirect to home after successful login
+      window.location.href = '/';
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 
   return (
     <div className="max-w-md mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8 text-center">Login</h1>
+
       {error && (
-        <div className="bg-red-50 text-red-600 p-3 rounded-md mb-4">
+        <div className="bg-red-50 text-red-600 p-3 rounded-md mb-4 text-sm">
           {error}
         </div>
       )}
+
       <form onSubmit={handleSubmit} className="bg-white border rounded-lg p-6">
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Email</label>
@@ -36,6 +39,7 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="your@email.com"
             className="w-full px-3 py-2 border rounded-md"
           />
         </div>
@@ -46,6 +50,7 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Your password"
             className="w-full px-3 py-2 border rounded-md"
           />
         </div>
@@ -57,6 +62,7 @@ export default function LoginPage() {
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
+
       <p className="text-center mt-4 text-sm text-gray-600">
         Don't have an account?{' '}
         <Link to="/register" className="text-orange-600 hover:underline">
