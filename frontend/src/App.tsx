@@ -14,6 +14,7 @@ import FavoritesPage from './pages/user/FavoritesPage';
 import OwnerDashboardPage from './pages/owner/OwnerDashboardPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminAnalyticsPage from './pages/admin/AdminAnalyticsPage';
+import AddRestaurantPage from './pages/restaurant/AddRestaurantPage';
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="restaurants" element={<RestaurantsPage />} />
+            <Route path="add-restaurant" element={<AddRestaurantPage />} />
             <Route path="restaurants/:id" element={<RestaurantDetailsPage />} />
             <Route path="ranking" element={<RankingPage />} />
             <Route path="login" element={<LoginPage />} />

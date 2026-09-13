@@ -28,6 +28,11 @@ export default function Layout() {
               <Link to="/restaurants" className="text-gray-700 hover:text-orange-600 text-sm">
                 {t('nav.restaurants')}
               </Link>
+              {isAuthenticated && (
+                <Link to="/add-restaurant" className="text-gray-700 hover:text-orange-600 text-sm">
+                  ➕ Add Restaurant
+                </Link>
+              )}
               <Link to="/ranking" className="text-gray-700 hover:text-orange-600 text-sm">
                 {t('nav.topRanked')}
               </Link>
