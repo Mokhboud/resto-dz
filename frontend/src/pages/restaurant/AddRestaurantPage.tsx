@@ -37,7 +37,7 @@ export default function AddRestaurantPage() {
       const response = await apiClient.post('/restaurants', data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       setSuccess('Restaurant submitted! It will be reviewed by our team and published soon.');
       setError('');
       setTimeout(() => navigate('/'), 3000);
