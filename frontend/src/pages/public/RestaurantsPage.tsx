@@ -3,9 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
 import RestaurantMap from '../../components/map/RestaurantMap';
+import { useAuthStore } from '../../stores/authStore';
 
 export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { isAuthenticated } = useAuthStore();
   
   const search = searchParams.get('search') || '';
   const wilayaId = searchParams.get('wilaya_id') || '';
@@ -87,11 +89,19 @@ export default function RestaurantsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header with Map/List toggle */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
         <h1 className="text-3xl font-bold">
           {nearbyMode ? '📍 Near You' : '🍽️ Restaurants'}
         </h1>
         <div className="flex gap-2">
+          {isAuthenticated && (
+            <Link
+              to="/restaurants/add"
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm"
+            >
+              ➕ Add Restaurant
+            </Link>
+          )}
           <button
             onClick={() => setViewMode('list')}
             className={`px-4 py-2 rounded-md text-sm ${viewMode === 'list' ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'}`}
