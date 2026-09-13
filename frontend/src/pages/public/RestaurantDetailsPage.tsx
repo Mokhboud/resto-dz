@@ -21,6 +21,23 @@ export default function RestaurantDetailsPage() {
   const [claimError, setClaimError] = useState('');
   const [claimSuccess, setClaimSuccess] = useState('');
 
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [reportReason, setReportReason] = useState('WRONG_INFO');
+  const [reportNotes, setReportNotes] = useState('');
+  const [reportSuccess, setReportSuccess] = useState('');
+
+  const reportMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiClient.post(`/restaurants/${id}/report`, data);
+      return response.data;
+    },
+    onSuccess: () => {
+      setReportSuccess('Thank you! Your report has been submitted.');
+      setShowReportForm(false);
+      setReportNotes('');
+    },
+  });
+
   const claimMutation = useMutation({
     mutationFn: async (data: any) => {
       const response = await apiClient.post(`/restaurants/${id}/claim`, data);
@@ -110,11 +127,29 @@ export default function RestaurantDetailsPage() {
           </div>
         </div>
 
-        {restaurant.verified && (
-          <div className="mt-3 inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-            ✓ Verified Restaurant
-          </div>
-        )}
+        {/* Verification Badge */}
+        <div className="mt-3 flex gap-2">
+          {restaurant.verification_status === 'VERIFIED' && (
+            <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+              🟢 Vérifié
+            </span>
+          )}
+          {restaurant.verification_status === 'CLAIMED' && (
+            <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+              🔵 Revendiqué
+            </span>
+          )}
+          {(!restaurant.verification_status || restaurant.verification_status === 'UNVERIFIED') && (
+            <span className="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+              🟡 Non vérifié
+            </span>
+          )}
+          {restaurant.verified && (
+            <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+              ✓ Verified Restaurant
+            </span>
+          )}
+        </div>
 
         {/* Google Maps Buttons */}
         {restaurant.latitude && restaurant.longitude && (
@@ -320,7 +355,7 @@ export default function RestaurantDetailsPage() {
       )}
 
       {/* Reviews */}
-      <div className="bg-white border rounded-lg p-6">
+      <div className="bg-white border rounded-lg p-6 mb-6">
         <h2 className="text-xl font-bold mb-4">💬 Reviews ({restaurant.review_count})</h2>
         {reviews.length === 0 ? (
           <div className="text-gray-500 text-center py-6">No reviews yet</div>
@@ -346,6 +381,65 @@ export default function RestaurantDetailsPage() {
                 )}
               </div>
             ))}
+          </div>
+        )}
+      </div>
+
+      {/* Report Section */}
+      <div className="bg-gray-50 border rounded-lg p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-sm font-semibold">⚠️ Something wrong with this restaurant?</h3>
+            <p className="text-xs text-gray-500 mt-1">
+              Help us improve Resto DZ by reporting incorrect information.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowReportForm(!showReportForm)}
+            className="text-sm text-red-600 hover:text-red-700 underline whitespace-nowrap"
+          >
+            Signaler une information incorrecte
+          </button>
+        </div>
+
+        {reportSuccess && (
+          <div className="bg-green-50 text-green-600 p-3 rounded-md mt-3 text-sm">{reportSuccess}</div>
+        )}
+
+        {showReportForm && (
+          <div className="mt-4 border-t pt-4 space-y-3">
+            <div>
+              <label className="block text-xs font-medium mb-1">Reason</label>
+              <select
+                value={reportReason}
+                onChange={(e) => setReportReason(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md text-sm"
+              >
+                <option value="CLOSED">Restaurant fermé</option>
+                <option value="NOT_EXISTS">Restaurant n'existe pas</option>
+                <option value="WRONG_ADDRESS">Mauvaise adresse</option>
+                <option value="WRONG_PHONE">Mauvais téléphone</option>
+                <option value="WRONG_INFO">Informations incorrectes</option>
+                <option value="DUPLICATE">Doublon</option>
+                <option value="OTHER">Autre</option>
+              </select>
+            </div>
+            <textarea
+              value={reportNotes}
+              onChange={(e) => setReportNotes(e.target.value)}
+              placeholder="Additional details (optional)"
+              rows={2}
+              className="w-full px-3 py-2 border rounded-md text-sm"
+            />
+            <button
+              onClick={() => {
+                reportMutation.mutate({ reason: reportReason, description: reportNotes });
+              }}
+              disabled={reportMutation.isPending}
+              className="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 text-sm"
+            >
+              {reportMutation.isPending ? 'Submitting...' : 'Submit Report'}
+            </button>
           </div>
         )}
       </div>
