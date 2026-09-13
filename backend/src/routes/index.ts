@@ -22,6 +22,8 @@ import { EnhancedImportController } from '../controllers/enhancedImportControlle
 import { VisitController } from '../controllers/visitController';
 import { FeedbackController } from '../controllers/feedbackController';
 import { MenuController } from '../controllers/menuController';
+import { VerificationController } from '../controllers/verificationController';
+import { RestaurantReportController } from '../controllers/restaurantReportController';
 
 const router = Router();
 
@@ -30,6 +32,8 @@ const restaurantController = new RestaurantController();
 const menuController = new MenuController();
 const categoryController = new CategoryController();
 const cuisineController = new CuisineController();
+const verificationController = new VerificationController();
+const restaurantReportController = new RestaurantReportController();
 const wilayaController = new WilayaController();
 const authController = new AuthController();
 const restaurantManagementController = new RestaurantManagementController();
@@ -64,6 +68,17 @@ router.post('/auth/register', authController.register.bind(authController));
 router.post('/auth/login', authController.login.bind(authController));
 router.post('/auth/logout', authController.logout.bind(authController));
 router.get('/auth/me', authenticate, authController.me.bind(authController));
+
+
+// Verification routes
+router.get('/admin/restaurants/pending', authenticate, authorize('ADMIN', 'SUPER_ADMIN', 'MODERATOR'), verificationController.getPending.bind(verificationController));
+router.get('/admin/restaurants/user-submitted', authenticate, authorize('ADMIN', 'SUPER_ADMIN', 'MODERATOR'), verificationController.getUserSubmitted.bind(verificationController));
+router.put('/admin/restaurants/:id/verify', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), verificationController.verifyRestaurant.bind(verificationController));
+router.put('/admin/restaurants/:id/reject', authenticate, authorize('ADMIN', 'SUPER_ADMIN'), verificationController.rejectRestaurant.bind(verificationController));
+
+// Restaurant report routes
+router.post('/restaurants/:id/report', restaurantReportController.submitReport.bind(restaurantReportController));
+router.get('/admin/restaurant-reports', authenticate, authorize('ADMIN', 'SUPER_ADMIN', 'MODERATOR'), restaurantReportController.getReports.bind(restaurantReportController));
 
 // Menu routes
 router.get('/restaurants/:id/menu', menuController.getMenu.bind(menuController));
