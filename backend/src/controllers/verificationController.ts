@@ -4,7 +4,8 @@ import { AuthRequest } from '../middleware/auth';
 
 export class VerificationController {
   /**
-   * GET /api/admin/restaurants/pending — Get unverified restaurants
+   * GET /api/admin/restaurants/pending
+   * Returns PENDING (user-submitted) + ACTIVE unverified (imported)
    */
   async getPending(req: Request, res: Response, next: NextFunction) {
     try {
@@ -14,19 +15,29 @@ export class VerificationController {
 
       const restaurants = await AppDataSource.query(
         `SELECT r.id, r.name, r.address, r.phone, r.wilaya_id, r.data_source,
-                r.verification_status, r.created_at,
+                r.verification_status, r.status, r.created_at,
                 w.name_fr as wilaya_name
          FROM restaurants r
          LEFT JOIN wilayas w ON r.wilaya_id = w.id
-         WHERE r.status = 'ACTIVE' 
-           AND r.verification_status = 'UNVERIFIED'
-         ORDER BY r.created_at DESC
+         WHERE r.deleted_at IS NULL
+           AND (
+             r.status = 'PENDING'
+             OR (r.status = 'ACTIVE' AND r.verification_status = 'UNVERIFIED')
+           )
+         ORDER BY 
+           CASE WHEN r.status = 'PENDING' THEN 1 ELSE 2 END,
+           r.created_at DESC
          LIMIT $1 OFFSET $2`,
         [limit, offset]
       );
 
       const countResult = await AppDataSource.query(
-        `SELECT COUNT(*) as total FROM restaurants WHERE status = 'ACTIVE' AND verification_status = 'UNVERIFIED'`
+        `SELECT COUNT(*) as total FROM restaurants 
+         WHERE deleted_at IS NULL
+           AND (
+             status = 'PENDING'
+             OR (status = 'ACTIVE' AND verification_status = 'UNVERIFIED')
+           )`
       );
       const total = parseInt(countResult[0]?.total || '0');
 
@@ -48,14 +59,14 @@ export class VerificationController {
     try {
       const restaurants = await AppDataSource.query(
         `SELECT r.id, r.name, r.address, r.phone, r.wilaya_id, r.data_source,
-                r.verification_status, r.created_at, r.owner_id,
+                r.verification_status, r.status, r.created_at, r.owner_id,
                 w.name_fr as wilaya_name,
                 u.email as submitted_by
          FROM restaurants r
          LEFT JOIN wilayas w ON r.wilaya_id = w.id
          LEFT JOIN users u ON u.id = r.owner_id
          WHERE r.status IN ('PENDING', 'ACTIVE')
-           AND r.data_source = 'USER_SUBMITTED'
+           AND (r.data_source = 'USER_SUBMITTED' OR r.owner_id IS NOT NULL)
          ORDER BY r.created_at DESC
          LIMIT 100`
       );
@@ -71,7 +82,7 @@ export class VerificationController {
   }
 
   /**
-   * PUT /api/admin/restaurants/:id/verify — Mark as verified
+   * PUT /api/admin/restaurants/:id/verify — Mark as verified AND activate
    */
   async verifyRestaurant(req: AuthRequest, res: Response, next: NextFunction) {
     try {
@@ -79,21 +90,26 @@ export class VerificationController {
         `UPDATE restaurants 
          SET verification_status = 'VERIFIED', 
              verified = true, 
+             status = 'ACTIVE',
              verified_at = CURRENT_TIMESTAMP,
              updated_at = CURRENT_TIMESTAMP
          WHERE id = $1
-         RETURNING id, name, verification_status`,
+         RETURNING id, name, verification_status, status`,
         [req.params.id]
       );
 
       if (!result[0]) {
-        return res.status(404).json({ success: false, message: 'Restaurant not found', errorCode: 'NOT_FOUND' });
+        return res.status(404).json({ 
+          success: false, 
+          message: 'Restaurant not found', 
+          errorCode: 'NOT_FOUND' 
+        });
       }
 
       res.json({
         success: true,
         data: result[0],
-        message: 'Restaurant verified successfully',
+        message: 'Restaurant verified and activated successfully',
       });
     } catch (error) {
       next(error);
@@ -101,7 +117,7 @@ export class VerificationController {
   }
 
   /**
-   * PUT /api/admin/restaurants/:id/reject — Mark as unverified/rejected
+   * PUT /api/admin/restaurants/:id/reject — Mark as unverified + reject
    */
   async rejectRestaurant(req: AuthRequest, res: Response, next: NextFunction) {
     try {
@@ -109,16 +125,25 @@ export class VerificationController {
         `UPDATE restaurants 
          SET verification_status = 'UNVERIFIED', 
              verified = false,
+             status = 'REJECTED',
              updated_at = CURRENT_TIMESTAMP
          WHERE id = $1
-         RETURNING id, name, verification_status`,
+         RETURNING id, name, verification_status, status`,
         [req.params.id]
       );
+
+      if (!result[0]) {
+        return res.status(404).json({ 
+          success: false, 
+          message: 'Restaurant not found', 
+          errorCode: 'NOT_FOUND' 
+        });
+      }
 
       res.json({
         success: true,
         data: result[0],
-        message: 'Restaurant marked as unverified',
+        message: 'Restaurant rejected',
       });
     } catch (error) {
       next(error);
