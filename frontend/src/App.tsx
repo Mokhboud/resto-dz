@@ -15,6 +15,7 @@ import OwnerDashboardPage from './pages/owner/OwnerDashboardPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminAnalyticsPage from './pages/admin/AdminAnalyticsPage';
 import AddRestaurantPage from './pages/restaurant/AddRestaurantPage';
+import AdminVerificationPage from './pages/admin/AdminVerificationPage';
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="admin" element={<AdminDashboardPage />} />
             <Route path="admin/analytics" element={<AdminAnalyticsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="admin/verification" element={<AdminVerificationPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

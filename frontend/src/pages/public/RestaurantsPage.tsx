@@ -4,6 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { restaurantsApi } from '../../api/restaurants';
 import RestaurantMap from '../../components/map/RestaurantMap';
 import { useAuthStore } from '../../stores/authStore';
+import RestaurantCard from '../../components/restaurants/RestaurantCard';
 
 export default function RestaurantsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -240,37 +241,10 @@ export default function RestaurantsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {restaurants.map((restaurant: any) => (
-              <Link
-                key={restaurant.id}
-                to={`/restaurants/${restaurant.id}`}
-                className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition"
-              >
-                <div className="p-6">
-                  <div className="flex items-start justify-between">
-                    <h2 className="font-bold text-lg">{restaurant.name}</h2>
-                    {restaurant.verified && <span className="text-blue-500 text-sm">✓</span>}
-                  </div>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {restaurant.wilaya_name} • {restaurant.address}
-                  </p>
-                  {restaurant.distance_km && (
-                    <p className="text-sm text-green-600 mt-1">
-                      📏 {parseFloat(restaurant.distance_km).toFixed(1)} km away
-                    </p>
-                  )}
-                  <div className="flex items-center gap-3 mt-3">
-                    <span className="text-yellow-500 font-bold">
-                      ⭐ {parseFloat(restaurant.avg_rating || '0').toFixed(1)}
-                    </span>
-                    <span className="text-sm text-gray-500">({restaurant.review_count})</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                      {restaurant.price_level === 1 ? '$' : restaurant.price_level === 2 ? '$$' : restaurant.price_level === 3 ? '$$$' : '$$$$'}
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
             ))}
           </div>
+
 
           {!nearbyMode && pagination && pagination.totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-8">
