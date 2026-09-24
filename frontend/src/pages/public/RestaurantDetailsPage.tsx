@@ -212,15 +212,14 @@ export default function RestaurantDetailsPage() {
   >
     ✍️ Write Review
   </button>
-  {isOwner && (
-    <a
-      href={`/restaurants/${restaurant.id}/edit`}
-      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-    >
-      ✏️ Edit Restaurant
-    </a>
-  )}
-</div>
+{isOwner && (
+  <a
+    href={`/restaurants/${restaurant.id}/edit`}
+    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+  >
+    ✏️ Edit Restaurant
+  </a>
+)}
 
       {/* Menu Section */}
       <MenuDisplay restaurantId={restaurant.id} />
