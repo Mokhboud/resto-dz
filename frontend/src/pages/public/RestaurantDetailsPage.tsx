@@ -95,7 +95,21 @@ export default function RestaurantDetailsPage() {
   }
 
   if (!restaurant) {
-    return <div className="text-center py-12">Restaurant not found</div>;
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+        <div className="text-6xl mb-4">🍽️</div>
+        <h1 className="text-2xl font-bold mb-2">Restaurant Not Available</h1>
+        <p className="text-gray-500 mb-6">
+          This restaurant may have been removed or is no longer available.
+        </p>
+        <a
+          href="/restaurants"
+          className="inline-block px-6 py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700"
+        >
+          Browse Other Restaurants
+        </a>
+      </div>
+    );
   }
 
   const handleSubmitReview = (e: React.FormEvent) => {
@@ -128,7 +142,7 @@ export default function RestaurantDetailsPage() {
         </div>
 
         {/* Verification Badge */}
-        <div className="mt-3 flex gap-2">
+        <div className="mt-3 flex gap-2 flex-wrap">
           {restaurant.verification_status === 'VERIFIED' && (
             <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
               🟢 Vérifié
@@ -184,6 +198,7 @@ export default function RestaurantDetailsPage() {
           )}
         </div>
 
+        {/* Categories & Cuisines */}
         <div className="flex flex-wrap gap-2 mt-4">
           {restaurant.categories?.map((cat: any) => (
             <span key={cat.id} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -197,29 +212,32 @@ export default function RestaurantDetailsPage() {
           ))}
         </div>
 
-<div className="flex flex-wrap gap-4 mt-4">
-  <button
-    onClick={() => favoriteMutation.mutate()}
-    disabled={!isAuthenticated}
-    className="px-4 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 disabled:opacity-50"
-  >
-    ❤️ Favorite
-  </button>
-  <button
-    onClick={() => setShowReviewForm(!showReviewForm)}
-    disabled={!isAuthenticated}
-    className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
-  >
-    ✍️ Write Review
-  </button>
-{isOwner && (
-  <a
-    href={`/restaurants/${restaurant.id}/edit`}
-    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-  >
-    ✏️ Edit Restaurant
-  </a>
-)}
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-4 mt-4">
+          <button
+            onClick={() => favoriteMutation.mutate()}
+            disabled={!isAuthenticated}
+            className="px-4 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 disabled:opacity-50"
+          >
+            ❤️ Favorite
+          </button>
+          <button
+            onClick={() => setShowReviewForm(!showReviewForm)}
+            disabled={!isAuthenticated}
+            className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
+          >
+            ✍️ Write Review
+          </button>
+          {isOwner && (
+            <a
+              href={`/restaurants/${restaurant.id}/edit`}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              ✏️ Edit Restaurant
+            </a>
+          )}
+        </div>
+      </div>
 
       {/* Menu Section */}
       <MenuDisplay restaurantId={restaurant.id} />
