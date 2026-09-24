@@ -16,6 +16,7 @@ import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminAnalyticsPage from './pages/admin/AdminAnalyticsPage';
 import AddRestaurantPage from './pages/restaurant/AddRestaurantPage';
 import AdminVerificationPage from './pages/admin/AdminVerificationPage';
+import EditRestaurantPage from './pages/restaurant/EditRestaurantPage';
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="restaurants" element={<RestaurantsPage />} />
             <Route path="add-restaurant" element={<AddRestaurantPage />} />
+            <Route path="restaurants/:id/edit" element={<EditRestaurantPage />} />
             <Route path="restaurants/:id" element={<RestaurantDetailsPage />} />
             <Route path="ranking" element={<RankingPage />} />
             <Route path="login" element={<LoginPage />} />
@@ -43,8 +45,8 @@ function App() {
             <Route path="owner" element={<OwnerDashboardPage />} />
             <Route path="admin" element={<AdminDashboardPage />} />
             <Route path="admin/analytics" element={<AdminAnalyticsPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="admin/verification" element={<AdminVerificationPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>
