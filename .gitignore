@@ -1,12 +1,40 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+build/
+
+# Environment
 .env
+.env.*
 .env.production
-uploads/
+!.env.example
+
+# Logs
 logs/
+backend/logs/
 *.log
-*.b64
-*.png
-get-docker.sh
-fix_categories*.sql
-Dockerfile.txt
+
+# Uploads
+uploads/
+
+# One-time scripts
+backend/src/assign-categories.ts
+backend/src/check-*.ts
+backend/src/create-admin-neon.ts
+backend/src/enrich-restaurants.ts
+backend/src/remove-*.ts
+backend/src/run-migration-*.ts
+backend/src/seed-*.ts
+backend/src/seeds/
+backend/src/imports/
+backend/src/utils/RestaurantImporter.ts
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
