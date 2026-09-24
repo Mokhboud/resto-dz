@@ -197,23 +197,30 @@ export default function RestaurantDetailsPage() {
           ))}
         </div>
 
-        <div className="flex gap-4 mt-4">
-          <button
-            onClick={() => favoriteMutation.mutate()}
-            disabled={!isAuthenticated}
-            className="px-4 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 disabled:opacity-50"
-          >
-            ❤️ Favorite
-          </button>
-          <button
-            onClick={() => setShowReviewForm(!showReviewForm)}
-            disabled={!isAuthenticated}
-            className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
-          >
-            ✍️ Write Review
-          </button>
-        </div>
-      </div>
+<div className="flex flex-wrap gap-4 mt-4">
+  <button
+    onClick={() => favoriteMutation.mutate()}
+    disabled={!isAuthenticated}
+    className="px-4 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 disabled:opacity-50"
+  >
+    ❤️ Favorite
+  </button>
+  <button
+    onClick={() => setShowReviewForm(!showReviewForm)}
+    disabled={!isAuthenticated}
+    className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
+  >
+    ✍️ Write Review
+  </button>
+  {isOwner && (
+    <a
+      href={`/restaurants/${restaurant.id}/edit`}
+      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+    >
+      ✏️ Edit Restaurant
+    </a>
+  )}
+</div>
 
       {/* Menu Section */}
       <MenuDisplay restaurantId={restaurant.id} />
