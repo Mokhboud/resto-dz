@@ -326,11 +326,11 @@ export default function RestaurantDetailsPage() {
             <a href="/login" className="text-orange-600 hover:underline font-medium">
               Login
             </a>
-            {' '}to add photos
+            {' to add photos'}
           </div>
         )}
+
       </div>
->
 
       {/* Opening Hours */}
       <div className="bg-white border rounded-lg p-6 mb-6">
