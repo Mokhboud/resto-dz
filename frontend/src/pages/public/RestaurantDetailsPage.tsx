@@ -316,12 +316,21 @@ export default function RestaurantDetailsPage() {
         <h2 className="text-xl font-bold mb-4">📸 Photos</h2>
         <PhotoGallery restaurantId={restaurant.id} isOwner={isOwner} />
         
-        {isOwner && (
+        {isAuthenticated && (
           <div className="mt-4">
             <PhotoUpload restaurantId={restaurant.id} />
           </div>
         )}
+        {!isAuthenticated && (
+          <div className="mt-4 text-sm text-gray-500 text-center py-4 bg-gray-50 rounded">
+            <a href="/login" className="text-orange-600 hover:underline font-medium">
+              Login
+            </a>
+            {' '}to add photos
+          </div>
+        )}
       </div>
+>
 
       {/* Opening Hours */}
       <div className="bg-white border rounded-lg p-6 mb-6">
