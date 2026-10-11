@@ -1,22 +1,35 @@
-import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useAuthStore } from '../../stores/authStore';
 import { Link } from 'react-router-dom';
+import apiClient from '../../api/client';
 
 export default function LoginPage() {
   const { login, isLoading } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [waking, setWaking] = useState(false);
+
+  useEffect(() => {
+    apiClient.get('/health').catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    const wakeTimer = setTimeout(() => setWaking(true), 3000);
+
     try {
       await login(email, password);
-      // Force redirect to home after successful login
       window.location.href = '/';
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
+      setError(
+        err.response?.data?.message || 'Login failed. Please try again.'
+      );
+    } finally {
+      clearTimeout(wakeTimer);
+      setWaking(false);
     }
   };
 
@@ -38,10 +51,13 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="email"
+            disabled={isLoading}
             placeholder="your@email.com"
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
           />
         </div>
+
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2">Password</label>
           <input
@@ -49,17 +65,55 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
+            disabled={isLoading}
             placeholder="Your password"
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md disabled:bg-gray-50"
           />
         </div>
+
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full px-6 py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50"
+          className="w-full px-6 py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:opacity-50 flex items-center justify-center gap-2"
         >
+          {isLoading && (
+            <svg
+              className="animate-spin h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              />
+            </svg>
+          )}
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
+
+        {isLoading && !waking && (
+          <p className="mt-3 text-sm text-gray-500 text-center">
+            Signing you in...
+          </p>
+        )}
+
+        {waking && (
+          <p className="mt-3 text-sm text-amber-600 text-center">
+            Waking up the server. First request after a pause can take up
+            to 60 seconds. Please don't close this page.
+          </p>
+        )}
       </form>
 
       <p className="text-center mt-4 text-sm text-gray-600">

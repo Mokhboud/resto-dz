@@ -37,4 +37,6 @@ Thumbs.db
 
 # IDE
 .vscode/
-.idea/
+.idea/*.backup
+*.backup
+*.bak
