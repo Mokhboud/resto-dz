@@ -1,7 +1,7 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 import { logger } from '../config/logger';
 
-interface OSMRestaurant {
+export interface OSMRestaurant {
   name: string;
   address: string;
   latitude: number;
@@ -62,7 +62,7 @@ export class OSMSearchService {
       return restaurants;
     } catch (error: any) {
       logger.error(`OSM search failed: ${error.message}`);
-      // Return empty array on error — don't break the whole import
+      // Return empty array on error â€” don't break the whole import
       return [];
     }
   }
