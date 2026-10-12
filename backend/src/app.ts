@@ -1,4 +1,4 @@
-import express from 'express';
+﻿import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -14,6 +14,9 @@ import { setupSwagger } from './config/swagger';
 
 export const createApp = () => {
   const app = express();
+
+  // Trust Render's reverse proxy so rate-limit reads client IPs correctly
+  app.set('trust proxy', 1);
 
   // Security middleware
   app.use(helmet({
