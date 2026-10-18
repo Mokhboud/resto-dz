@@ -1,5 +1,6 @@
 ﻿import { v2 as cloudinary } from 'cloudinary';
 import { StorageProvider, UploadedFile } from './types';
+import streamifier from 'streamifier';
 
 export class CloudinaryStorageProvider implements StorageProvider {
   constructor() {
@@ -28,7 +29,9 @@ export class CloudinaryStorageProvider implements StorageProvider {
           resolve(result);
         }
       );
-      uploadStream.end(file.buffer);
+
+      // ✅ Pipe the buffer into the stream (fixes memoryStorage upload)
+      streamifier.createReadStream(file.buffer).pipe(uploadStream);
     });
 
     const thumbnailUrl = cloudinary.url(result.public_id, {
