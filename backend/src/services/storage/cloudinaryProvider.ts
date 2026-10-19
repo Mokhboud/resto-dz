@@ -12,7 +12,9 @@ export class CloudinaryStorageProvider implements StorageProvider {
     });
   }
 
-  async upload(file: Express.Multer.File, folder: string): Promise<UploadedFile> {
+    async upload(file: Express.Multer.File, folder: string): Promise<UploadedFile> {
+    console.log('[Cloudinary] Upload started. File size:', file.size, 'mimetype:', file.mimetype);
+
     const result = await new Promise<any>((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
@@ -25,12 +27,19 @@ export class CloudinaryStorageProvider implements StorageProvider {
           ],
         },
         (error, result) => {
-          if (error) return reject(error);
+          if (error) {
+            console.error('[Cloudinary] Upload error:', error);
+            return reject(error);
+          }
+          if (!result) {
+            console.error('[Cloudinary] Upload error: result is undefined');
+            return reject(new Error('Cloudinary returned no result'));
+          }
+          console.log('[Cloudinary] Upload success. Public ID:', result.public_id);
           resolve(result);
         }
       );
 
-      // ✅ Pipe the buffer into the stream (fixes memoryStorage upload)
       streamifier.createReadStream(file.buffer).pipe(uploadStream);
     });
 
@@ -60,3 +69,5 @@ export class CloudinaryStorageProvider implements StorageProvider {
     }
   }
 }
+
+
