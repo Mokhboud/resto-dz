@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+﻿import { Request, Response, NextFunction } from 'express';
 import { AppDataSource } from '../config/database';
 
 export class VisitController {
@@ -73,11 +73,36 @@ export class VisitController {
    */
   async getStats(req: Request, res: Response, next: NextFunction) {
     try {
+      // Exclude admin/super_admin/moderator accounts from user-facing stats
+      const adminRoleFilter = `(
+        SELECT ur.user_id FROM user_roles ur
+        JOIN roles r ON r.id = ur.role_id
+        WHERE r.name IN ('ADMIN', 'SUPER_ADMIN', 'MODERATOR')
+      )`;
+
       const [totalVisits, todayVisits, totalUsers, totalLogins] = await Promise.all([
-        AppDataSource.query(`SELECT COUNT(*) as c FROM visit_logs`),
-        AppDataSource.query(`SELECT COUNT(*) as c FROM visit_logs WHERE created_at::date = CURRENT_DATE`),
-        AppDataSource.query(`SELECT COUNT(*) as c FROM users`),
-        AppDataSource.query(`SELECT COUNT(*) as c FROM login_history`),
+        AppDataSource.query(`
+          SELECT COUNT(*) AS c FROM visit_logs
+          WHERE user_id IS NULL OR user_id NOT IN ${adminRoleFilter}
+        `),
+        AppDataSource.query(`
+          SELECT COUNT(*) AS c FROM visit_logs
+          WHERE created_at::date = CURRENT_DATE
+            AND (user_id IS NULL OR user_id NOT IN ${adminRoleFilter})
+        `),
+        AppDataSource.query(`
+          SELECT COUNT(*) AS c FROM users u
+          WHERE NOT EXISTS (
+            SELECT 1 FROM user_roles ur
+            JOIN roles r ON r.id = ur.role_id
+            WHERE ur.user_id = u.id
+              AND r.name IN ('ADMIN', 'SUPER_ADMIN', 'MODERATOR')
+          )
+        `),
+        AppDataSource.query(`
+          SELECT COUNT(*) AS c FROM login_history
+          WHERE user_id IS NULL OR user_id NOT IN ${adminRoleFilter}
+        `),
       ]);
 
       res.json({
